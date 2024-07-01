@@ -1,0 +1,49 @@
+{% extends "inicio/layout.html" %} 
+{% block titulo %}Contáctanos{% endblock %}
+{% block estadoContacto %}active{% endblock %}
+
+{% block contenido %}
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 rounded-3 shadow-lg">
+          <div class="card-body p-4">
+            <div class="text-center">
+              <div class="h-title h1 fw-normal">Contáctanos</div>
+            </div>
+            <p class="mb-4 text-muted">Escriba un comentario sugerencia.</p>
+            <form action="#" method="get" id="contactForm" data-sb-form-api-token="API_TOKEN">
+
+              <!-- Message Input -->
+              <div class="form-floating mb-3">
+                <textarea class="form-control" id="message" type="text" placeholder="Escriba aquí..." style="height: 10rem;" data-sb-validations="required" required></textarea>
+                <label for="message">Mensaje</label>
+                <div class="invalid-feedback" data-sb-feedback="message:required">Se requiere un mensaje para enviar.</div>
+              </div>
+  
+              <!-- Submit success message -->
+              <div class="d-none" id="submitSuccessMessage">
+                <div class="text-center mb-3">
+                  <div class="fw-bolder">¡Tu comentario se ha enviado con éxito!</div>
+                </div>
+              </div>
+  
+              <!-- Submit error message -->
+              <div class="d-none" id="submitErrorMessage">
+                <div class="text-center text-danger mb-3">¡Error al enviar el comentario!</div>
+              </div>
+  
+              <!-- Submit button -->
+              <div class="text-center">
+                <button type="submit" form="contactForm" value="Submit" class="btn-sample btn">Enviar</button>
+              </div>
+            </form>
+            <!-- End of contact form -->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <!-- CDN Link to SB Forms Scripts -->
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+{% endblock %}
