@@ -4,8 +4,10 @@
 {% block nombreApartado %}Catálogo{% endblock nombreApartado %}
 {% block contenido %}
 {% load static %}
+<!--Comentario de prueba 2.3-->
 
     <p class="h2 fw-light pb-3">Promociones</p>
+    <!--Promociones-->
     <div class="row g-4">
         <div class="col col-md-4">
             <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
@@ -72,7 +74,9 @@
             </a>
         </div>
     </div>
+    <!--Promociones-->
     <hr>
+    <!--Cabañas Disponibles-->
     <div class="row g-4">
         <div class="col col-md-4">
             <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
@@ -139,5 +143,6 @@
             </a>
         </div>
     </div>
+    <!--/Cabañas Disponibles-->
     
 {% endblock contenido %}

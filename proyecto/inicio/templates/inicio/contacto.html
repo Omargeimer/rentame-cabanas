@@ -13,37 +13,39 @@
             <p class="mb-4 text-muted">Escriba un comentario sugerencia.</p>
             <form action="#" method="get" id="contactForm" data-sb-form-api-token="API_TOKEN">
 
-              <!-- Message Input -->
+              <!-- Mensaje Input -->
               <div class="form-floating mb-3">
                 <textarea class="form-control" id="message" type="text" placeholder="Escriba aquí..." style="height: 10rem;" data-sb-validations="required" required></textarea>
                 <label for="message">Mensaje</label>
                 <div class="invalid-feedback" data-sb-feedback="message:required">Se requiere un mensaje para enviar.</div>
               </div>
-  
-              <!-- Submit success message -->
-              <div class="d-none" id="submitSuccessMessage">
-                <div class="text-center mb-3">
-                  <div class="fw-bolder">¡Tu comentario se ha enviado con éxito!</div>
-                </div>
-              </div>
-  
-              <!-- Submit error message -->
-              <div class="d-none" id="submitErrorMessage">
-                <div class="text-center text-danger mb-3">¡Error al enviar el comentario!</div>
-              </div>
-  
-              <!-- Submit button -->
+              <!--Botón-->
               <div class="text-center">
-                <button type="submit" form="contactForm" value="Submit" class="btn-sample btn">Enviar</button>
+                <button type="submit" data-bs-toggle="modal" data-bs-target="#modalContacto" form="contactForm" value="Submit" class="btn-sample btn">Enviar</button>
               </div>
             </form>
-            <!-- End of contact form -->
           </div>
         </div>
       </div>
     </div>
   
-  <!-- CDN Link to SB Forms Scripts -->
-  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+<!-- Modal -->
+<div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="modalContacto" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalContacto">¡Gracias por tus comentarios!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Los tomaremos en cuenta.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="border-0 btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="border-0 btn-sample btn btn-primary">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
