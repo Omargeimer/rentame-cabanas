@@ -16,6 +16,7 @@
     <!--/Incluir librería Iconos-->
 </head>
 <body>
+    <!--Barra de Navegación-->
     <nav class="navbar navbar-expand-sm navbar-dark justify-content-center" style="background-color: #213635;">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url "Catalogo" %}">
@@ -51,13 +52,19 @@
                 </ul>
             </div>
         </div>
-    </nav>   
+    </nav>
+    <!--/Barra de Navegación-->
+    
+    <!--Contenido-->
     <div class="mt-5 container"id="contenido">
         <h1 class="mb-5 h-title text-center h1 fw-normal">{% block nombreApartado %}{% endblock %}</h1> 
         {% block contenido %}
         <!--En este apartado se incluirá el contenido de cada módulo-->
         {% endblock contenido %}
     </div>
+    <!--/Contenido-->
+
+    <!--Pie de Página-->
     <footer class="ms-0 d-flex flex-wrap justify-content-center align-items-center py-4 p-5 mt-5" style="background-color: #213635;">
         <p class="col-md-4 mb-0 text-light">
             Email: rentamecabañas@gmail.com
@@ -78,4 +85,5 @@
             </div>
         </div>
     </footer>
+    <!--Pie de Página-->
 </html>

@@ -18,11 +18,11 @@
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
+      <span class="visually-hidden">Anterior</span>
     </button>
     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden">Siguiente</span>
     </button>
 </div>
 <!--/Carousel-->
@@ -30,7 +30,9 @@
 <!--Descripción  general de la cabaña-->
 <div class="d-flex bd-highlight">
   <p class="h3 fw-light w-100 bd-highlight my-2">Cerca de La Montaña, México.</p>
-  <button type="submit" form="form1" value="Submit" class="btn-sample btn mb-3 px-5 my-2">Rentar</button>
+  <form action="{% url "Rentar_Cabana" %}" id="renta" method="get">
+    <button type="submit" form="renta" value="Submit" class="btn-sample btn mb-3 px-5 my-2">Rentar</button>
+  </form>
 </div>
 <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN. <br> <b>Puede albergar: </b> 3 personas. <br> <b>Número de Camas: </b>3 camas.</p>
 <!--Descripción  general de la cabaña-->
@@ -61,14 +63,17 @@
 
 <!--Descripción apartado de comentarios-->
 <p class="h3 fw-light w-100 bd-highlight my-2">Comentarios</p>
-<p>Describe y describe tu experiencia durante tu estadía en la cabaña.</p>
-<div class="d-flex bd-highlight">
-  <p class="h3 fw-light w-100 bd-highlight my-2">Cerca de La Montaña, México.</p>
-  <button type="submit" form="form1" value="Submit" class="btn-sample btn mb-3 px-5 my-2">Rentar</button>
-</div>
+<p>Describe tu experiencia durante tu estadía en la cabaña.</p>
 <!--/Descripción apartado de comentarios-->
 
 <!--Input Comentario-->
+<div class="ratings pb-3">
+  <i class="fa fa-star rating-color"></i>
+  <i class="fa fa-star rating-color"></i>
+  <i class="fa fa-star rating-color"></i>
+  <i class="fa fa-star rating-color"></i>
+  <i class="fa fa-star"></i>
+</div>
 <div class="input-group">
   <input type="text" class="form-control border-end-0 border" placeholder="Escribe aquí...">
   <button type="button" class="btn btn-outline-secondary border-start-0 border" type="button"><i class='bx bx-sm bxs-send'></i></button>
