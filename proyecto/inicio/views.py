@@ -29,6 +29,10 @@ def error_404(request):
 def vista_cabana_usuario(request):
     return render(request, 'inicio/vista_cabana_usuario.html')
 
+#Función rentar_cabana para mostrar la vista de renta.
+def rentar_cabana(request):
+    return render(request, 'inicio/rentar_cabana.html')
+
 
 
 
