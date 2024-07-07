@@ -1,0 +1,15 @@
+{% extends "inicio/layout.html" %}
+{% block titulo %}Perfil{% endblock %}
+{% load static %}
+{% block contenido %}
+<form action="{% url "Editar_Perfil" %}" method="get" id="form1">
+    <div class="text-center">
+        <div class="h-title h1 fw-normal pb-1">Perfil</div>
+        <img class="rounded-circle" width="300" height="300" alt="avatar1" src="{% static 'inicio/images/icono_perfil.webp' %}" />
+        <p class="h2 fw-light pb-3">Rogelio Hernández</p>
+        <button type="submit" form="form1" value="Submit" class="btn-sample btn mb-3">Editar Perfil</button>
+        <p>4435702310</p>
+        <p>rogelioh@gmail.com</p>
+    </div>
+</form>
+{% endblock %}
