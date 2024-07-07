@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from inicio import views
 from cabanas import views as views_cabanas
 from admin_users import views as views_users
 from renta import views as views_renta
@@ -26,10 +25,10 @@ from admin_cabanas import views as views_admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views_cabanas.catalogo, name='Catalogo'),
-    path('contacto/', views.contacto, name='Contacto'),
-    path('sobre_nosotros/', views.sobre_nosotros, name='Sobre_Nosotros'),
+    path('contacto/', views_cabanas.contacto, name='Contacto'),
+    path('sobre_nosotros/', views_cabanas.sobre_nosotros, name='Sobre_Nosotros'),
     path('perfil/', views_users.perfil, name='Perfil'),
-    path('error_404/', views.error_404, name='Error_404'),
+    path('error_404/', views_cabanas.error_404, name='Error_404'),
     path('editar_perfil/', views_users.editar_perfil, name='Editar_Perfil'),
     path('vista_cabana_usuario', views_cabanas.vista_cabana_usuario, name='Vista_Cabana_Usuario'),
     path('rentar_cabana', views_renta.rentar_cabana, name='Rentar_Cabana'),
