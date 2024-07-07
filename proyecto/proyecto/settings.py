@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inicio',
     'registros.apps.RegistrosConfig',
+<<<<<<< HEAD
     'admin_cabanas',
     'admin_users',
     'cabanas',
@@ -46,6 +47,9 @@ INSTALLED_APPS = [
     'renta',
     'valoraciones',
     ]
+=======
+]
+>>>>>>> 48a6cfdf55b95fddc44e5d5168a87aa5e335ab66
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
