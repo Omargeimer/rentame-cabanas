@@ -2,9 +2,90 @@
 {% block titulo %}Sobre Nosotros{% endblock %}
 {% block estadoSN %}active{% endblock %}
 {% block nombreApartado %}Sobre Nosotros{% endblock %}
-
+{% load static %}
 {% block contenido%}
-    <div class="text-center">
-        <p class="open-sans-font">Whereas recognition of the inherent dignity</p>
+<div class="row row align-items-start">
+    <!--Apartado ¿Quiénes Somos?-->
+    <div class="col-md-6">
+        <p class="h2 fw-light pb-2">¿Quiénes somo?</p>
+        <p class="justificar-texto">
+            Somos una empresa originaria de tierras Michoacanas, con los valores mexicanos bien cimentados, el trabajo, respeto y honorabilidad son los valores centrales de la empresa. Altamente reconocida y avalada por nuestros 19 años de experiencia en el mercado y nuestras más de 1232 familias satisfechas con nuestros servicios. Enfocada y preocupada por tu confort y desahogo en tus vacaciones. Entendemos cuáles son tus necesidades y nos comprometemos a brindarte un lugar reconfortable para lograr una satisfacción total en tus días de desahogo.
+            Siempre encontrarás una cabaña afín a lo que estás buscando.
+        </p>
     </div>
+    <div class="col-md-6">
+        <img class="img-fluid" src="{% static 'inicio/images/logo_blanco.png' %}" alt="">
+    </div>
+    <!--/¿Quiénes Somos?-->
+    <hr>
+    <!--Misión-->
+    <div class="row d-flex justify-content-center">
+        <p class=" h2 fw-light pb-2 text-center">Misión</p>
+    </div>
+    <div class="col-md-6">
+        <img class="img-fluid" src="{% static 'inicio/images/mision.png' %}" alt="">
+    </div>
+    <div class="col-md-6 pb-4">
+        <ul class="justificar-texto">
+            <li class="mb-3">
+                Brindar un servicio de calidad a nuestros clientes contando con personal comprometido con el mejoramiento de nuestros servicios.
+            </li>
+            <li class="mb-3">
+                Mejorar y diversificar nuestras ofertas para adaptarnos a las necesidades y preferencias cambiantes de nuestros clientes, garantizando así una experiencia únicas y enriquecedora.
+            </li>
+            <li class="mb-3">
+                Facilitar el acceso a entornos naturales inspiradores, fomentando el bienestar físico y emocional de nuestros clientes a través del contacto con la naturaleza.
+            </li>
+        </ul>
+    </div>
+    <!--/Misión-->
+    <hr>
+    <!--Visión-->
+    <div class="row d-flex justify-content-center">
+        <p class=" h2 fw-light pb-2 text-center">Visión</p>
+    </div>
+    <div class="col-md-6 pb-4">
+        <ul class="justificar-texto">
+            <li class="mb-3">
+                Ser una referencia de servicios de calidad y excelente servicio al cliente.
+            </li>
+            <li class="mb-3">
+                Expandir nuestra presencia global de manera responsable, manteniendo el equilibrio entre el crecimiento empresarial y la preservación de los recursos naturales.
+            </li>
+            <li class="mb-3">
+                Ser líderes reconocidos por nuestras experiencias únicas.
+            </li>
+            <li class="mb-3">
+                Ser una empresa reconocida por nuestros clientes como honesta y confiable, con un equipo de anfitriones de excelencia.
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <img class="img-fluid" src="{% static 'inicio/images/vision.png' %}" alt="">
+    </div>
+    <!--/Visión-->
+    <hr>
+    <!--Valores-->
+    <div class="row d-flex justify-content-center">
+        <p class=" h2 fw-light pb-2 text-center">Nuestros Valores</p>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="card col-md-3 p-5 text-center m-3"> <!-- Agregado text-center para centrar contenido -->
+            <img class="mx-auto" src="{% static 'inicio/images/honestidad.png' %}" alt="Imagen de Honestidad">
+            <h1 class="py-3 h-title h3 fw-normal">Honestidad</h1>
+            <p class="justificar-texto">Con rectitud y transparencia ante clientes, anfitriones y compañeros de trabajo.</p>
+        </div>
+        <div class="card col-md-3 p-5 text-center m-3"> <!-- Agregado text-center para centrar contenido -->
+            <img class="mx-auto" src="{% static 'inicio/images/compromiso.png' %}" alt="Imagen de Honestidad">
+            <h1 class="py-3  h3 fw-normal">Compromiso</h1>
+            <p class="justificar-texto">Fomentar la buena imagen y cuidar los recursos de la empresa, hacer un buen trabajo.</p>
+        </div>
+        <div class="card col-md-3 p-5 text-center m-3"> <!-- Agregado text-center para centrar contenido -->
+            <img class="mx-auto" src="{% static 'inicio/images/confianza.png' %}" alt="Imagen de Honestidad">
+            <h1 class="py-3 h-title h3 fw-normal">Confianza</h1>
+            <p class="justificar-texto">Brindar a nuestros clientes la mejor atención, afecto y respeto.</p>
+        </div>
+    </div>
+    <!--/Valores-->
+</div>
 {% endblock contenido%}
