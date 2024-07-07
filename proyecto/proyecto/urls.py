@@ -35,5 +35,7 @@ urlpatterns = [
     path('rentar_cabana', views_renta.rentar_cabana, name='Rentar_Cabana'),
     path('editar_cabana', views_admin.editar_cabana, name='Editar_Cabana'),
     path('crear_cabana', views_admin.crear_cabana, name='Crear_Cabana'),
+    path('login', views_users.login, name='Login'),
+    path('registro', views_users.registro, name='Registro'),
 ]
 
