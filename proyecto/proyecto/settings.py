@@ -38,7 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'inicio',
-]
+    'registros.apps.RegistrosConfig',
+    'admin_cabanas',
+    'admin_users',
+    'cabanas',
+    'promociones',
+    'renta',
+    'valoraciones',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
