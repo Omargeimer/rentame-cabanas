@@ -1,10 +1,13 @@
 from django.shortcuts import render
-
+from admin_cabanas.models import Cabana, ImagenCabana
+from promociones.models import Promocion
 # Create your views here.
 
 #Función catalogo para mostrar la página principal del sitio web.
 def catalogo(request):
-    return render(request, 'cabanas/catalogo.html')
+    cabanas = Cabana.objects.all()
+    promociones = Promocion.objects.all()
+    return render(request, 'cabanas/catalogo.html', {'cabanas':cabanas, 'promociones':promociones})
 
 #Función vista_cabana_usuario para mostrar cuando no existe la página solicitada.
 def vista_cabana_usuario(request):

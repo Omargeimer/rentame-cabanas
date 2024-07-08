@@ -7,81 +7,47 @@
 
     <p class="h2 fw-light pb-3">Promociones</p>
     <!--Promociones-->
-    <div class="row g-4">
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for i in promociones %}
+                <li data-bs-target="#carouselExampleControls" data-bs-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active" {% endif %} ></li>
+            {% endfor %} 
+        </ol>
+        <div class="carousel-inner">
+            {% for promocion in promociones %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="col d-block w-100">
+                    <div class="text-decoration-none text-body card" >
+                        <div class="card-body">
+                            <div class="text-center pt-3">
+                                <i class = "iconos-promo bx bxs-offer"></i>
+                            </div>
+                            <h5 class="card-title pt-3 text-center">{{ promocion.titulo }}</h5>
+                            <p class="card-text text-center pb-5"><b>Vigencia: </b> {{ promocion.fecha_inicio}} - {{ promocion.fecha_fin}}<br> <b>Descripción: </b>{{promocion.descripcion}}</p>
+                        </div>
                     </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
                 </div>
-            </a>
+            </div>
+            {% endfor %}
         </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
     </div>
     <!--Promociones-->
     <hr>
     <!--Cabañas Disponibles-->
     <div class="row g-4">
+        {% for cabana in cabanas %}
+        div
         <div class="col col-md-4">
             <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
+                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
+                    <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
                     <div class="ratings">
                         <i class="fa fa-star rating-color"></i>
                         <i class="fa fa-star rating-color"></i>
@@ -89,58 +55,11 @@
                         <i class="fa fa-star rating-color"></i>
                         <i class="fa fa-star"></i>
                     </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
+                <p class="card-text"><b>Anfitrión: </b> {{cabana.anfitrion}} <br> <b>Costo por noche: </b>${{ cabana.costo_noche }} MXN.</p>
                 </div>
             </a>
         </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
-        <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Bosque de Tranquilidad</h5>
-                    <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                <p class="card-text"><b>Anfitrión: </b> Juan Pérez. <br> <b>Costo por noche: </b>$1,250 MXN.</p>
-                </div>
-            </a>
-        </div>
+        {% endfor %}
     </div>
     <!--/Cabañas Disponibles-->
     
