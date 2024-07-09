@@ -42,9 +42,8 @@
     <!--Cabañas Disponibles-->
     <div class="row g-4">
         {% for cabana in cabanas %}
-        div
         <div class="col col-md-4">
-            <a href="{% url "Vista_Cabana_Usuario" %}" class="text-decoration-none text-body card" >
+            <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
                 <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
