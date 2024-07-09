@@ -10,8 +10,9 @@ def catalogo(request):
     return render(request, 'cabanas/catalogo.html', {'cabanas':cabanas, 'promociones':promociones})
 
 #Función vista_cabana_usuario para mostrar cuando no existe la página solicitada.
-def vista_cabana_usuario(request):
-    return render(request, 'cabanas/vista_cabana_usuario.html')
+def vista_cabana_usuario(request, id):
+    cabana = Cabana.objects.get(id=id)
+    return render(request, 'cabanas/vista_cabana_usuario.html', {'cabanas':cabana})
 
 #Función contacto para mostrar la página de contacto del sitio web.
 def contacto(request):
