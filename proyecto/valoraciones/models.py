@@ -11,6 +11,12 @@ class Valoracion(models.Model):
     creado = models.DateTimeField(auto_now=True, null=True) #Fecha y tiempo
     actualizado = models.DateTimeField(auto_now_add=True, null=True)
 
+    class Meta:
+        verbose_name="Valoración"
+        verbose_name_plural="Valoraciones"
+        ordering = ["-creado"]
+        #el menos indica que se ordenara del más reciente al más viejo
+
     def __str__(self):
         return f"Valoración de {self.usuario} para {self.cabana}"
 
