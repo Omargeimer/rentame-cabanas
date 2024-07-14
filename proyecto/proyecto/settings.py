@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'inicio',
-    'proyecto',
     'admin_cabanas.apps.AdminCabanasConfig',
     'admin_users.apps.AdminUsersConfig',
     'cabanas',
@@ -51,6 +50,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'colorfield',
     ]
+#ddd
 
 X_FRAME_OPTIONS='SAMEORIGIN'
 
