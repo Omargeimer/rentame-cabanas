@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Cabana, ImagenCabana
+from admin_interface.models import Theme
 
 class ImagenCabanaInline(admin.TabularInline):  # Puedes usar admin.StackedInline para un diseño diferente
     model = ImagenCabana

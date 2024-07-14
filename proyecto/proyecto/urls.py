@@ -20,6 +20,8 @@ from cabanas import views as views_cabanas
 from admin_users import views as views_users
 from renta import views as views_renta
 from admin_cabanas import views as views_admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -36,5 +38,5 @@ urlpatterns = [
     path('crear_cabana', views_admin.crear_cabana, name='Crear_Cabana'),
     path('login', views_users.login, name='Login'),
     path('registro', views_users.registro, name='Registro'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
