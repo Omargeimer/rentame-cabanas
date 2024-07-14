@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'colorfield',
     ]
-#ddd
+
 
 X_FRAME_OPTIONS='SAMEORIGIN'
 

@@ -15,7 +15,7 @@ class Valoracion(models.Model):
         verbose_name="Valoración"
         verbose_name_plural="Valoraciones"
         ordering = ["-creado"]
-        #el menos indica que se ordenara del más reciente al más viejo
+        #el menos indica que se ordenara del más reciente al más vie
 
     def __str__(self):
         return f"Valoración de {self.usuario} para {self.cabana}"
