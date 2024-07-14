@@ -20,6 +20,8 @@ from cabanas import views as views_cabanas
 from admin_users import views as views_users
 from renta import views as views_renta
 from admin_cabanas import views as views_admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -30,11 +32,11 @@ urlpatterns = [
     path('perfil/', views_users.perfil, name='Perfil'),
     path('error_404/', views_cabanas.error_404, name='Error_404'),
     path('editar_perfil/', views_users.editar_perfil, name='Editar_Perfil'),
-    path('vista_cabana_usuario/<int:id>', views_cabanas.vista_cabana_usuario, name='Vista_Cabana_Usuario'),
+    path('vista_cabana_usuario', views_cabanas.vista_cabana_usuario, name='Vista_Cabana_Usuario'),
     path('rentar_cabana', views_renta.rentar_cabana, name='Rentar_Cabana'),
     path('editar_cabana', views_admin.editar_cabana, name='Editar_Cabana'),
     path('crear_cabana', views_admin.crear_cabana, name='Crear_Cabana'),
     path('login', views_users.login, name='Login'),
     path('registro', views_users.registro, name='Registro'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

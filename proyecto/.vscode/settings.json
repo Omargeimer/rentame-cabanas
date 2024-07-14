@@ -1,0 +1,14 @@
+{
+  "emmet.includeLanguages": {
+    "django-html": "html"
+  },
+  "html.format.enable": true,
+  "html.format.indentInnerHtml": true,
+  "html.format.wrapLineLength": 80,
+  "html.format.wrapAttributes": "auto",
+  "html.format.unformatted": "wbr,script,style",
+  "html.format.contentUnformatted": "pre,code,textarea",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "prettier.disableLanguages": ["html"]
+}
