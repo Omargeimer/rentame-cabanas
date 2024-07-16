@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -21,3 +22,7 @@ def sobre_nosotros(request):
 #Función error_404 para mostrar cuando no existe la página solicitada.
 def error_404(request):
     return render(request, 'cabanas/error_404.html')
+
+def logout_user(request):
+    logout(request)
+    return redirect('Catalogo')
