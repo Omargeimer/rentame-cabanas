@@ -9,17 +9,18 @@
                     <div class="text-center">
                         <div class="pb-4 h-title h1 fw-normal">Iniciar Sesión</div>
                     </div>
-                    <form action="#" method="get">
+                    <form action="#" method="POST">
+                        {% csrf_token %}
                         <div class="col">
                             <div class="input-group mb-3">
-                                <div class="input-group-text"><i class='iconos-size bx bxs-envelope'></i></div>
-                                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Correo Electrónico">
+                                <div class="input-group-text"><i class='iconos-size bx bxs-user-circle'></i></div>
+                                <input type="text" class="form-control" name="username" placeholder="Usuario">
                             </div>
                         </div>
                         <div class="col">
                             <div class="input-group mb-3">
                                 <div class="input-group-text"><i class='iconos-size bx bxs-lock-alt'></i></i></div>
-                                <input type="password" class="form-control" placeholder="Contraseña" id="inputPassword">
+                                <input type="password" name="password" class="form-control" placeholder="Contraseña" >
                             </div>
                         </div>
                         <div class="text-center">
