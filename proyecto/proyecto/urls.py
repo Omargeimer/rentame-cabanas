@@ -39,5 +39,6 @@ urlpatterns = [
     path('crear_cabana', views_admin.crear_cabana, name='Crear_Cabana'),
     path('registro', views_users.registro, name='Registro'),
     path('logout', views_cabanas.logout_user, name='LogOut'),
+    #path('prueba', views_cabanas.prueba, name='Prueba')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
