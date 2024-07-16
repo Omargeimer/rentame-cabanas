@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'inicio',
     'admin_cabanas.apps.AdminCabanasConfig',
     'admin_users.apps.AdminUsersConfig',
     'cabanas',

@@ -12,6 +12,10 @@ def perfil(request):
 def editar_perfil(request):
     return render(request, 'admin_users/editar_perfil.html')
 
+#Función login para mostrar el inicio de sesión.
+def login(request):
+    return render(request, 'admin_users/login.html')
+
 #Función registro para mostrar el registro.
 def registro(request):
     return render(request, 'admin_users/registro.html')
