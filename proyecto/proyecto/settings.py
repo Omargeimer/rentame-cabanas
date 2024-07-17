@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'admin_cabanas.apps.AdminCabanasConfig',
-    'admin_users.apps.AdminUsersConfig',
+    'admin_users',
     'cabanas',
     'promociones.apps.PromocionesConfig',
     'renta.apps.RentaConfig',
@@ -157,3 +157,4 @@ CKEDITOR_CONFIGS ={
 LOGIN_REDIRECT_URL = 'Catalogo'
 LOGOUT_REDIRECT_URL = 'Catalogo'
 
+AUTH_USER_MODEL = 'admin_users.Usuario'
