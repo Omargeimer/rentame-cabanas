@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "emmet.includeLanguages": {
     "django-html": "html"
   },
@@ -12,3 +13,10 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.disableLanguages": ["html"]
 }
+=======
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact",
+        "django-html": "html"
+    }
+}
+>>>>>>> 68c4378c4ae4cfb55dd2b4e30fb34358b9718e61
