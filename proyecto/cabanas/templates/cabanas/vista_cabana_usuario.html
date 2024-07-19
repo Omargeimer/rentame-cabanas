@@ -50,19 +50,25 @@
 <hr>
 <!--/Servicios-->
 
+
 <!--Descripción apartado de comentarios-->
 <p class="h3 fw-light w-100 bd-highlight my-2">Comentarios</p>
 <p>Describe tu experiencia durante tu estadía en la cabaña.</p>
 <!--/Descripción apartado de comentarios-->
 
 <!--Input Comentario-->
-<div class="ratings pb-3">
-  <i class="fa fa-star rating-color"></i>
-  <i class="fa fa-star rating-color"></i>
-  <i class="fa fa-star rating-color"></i>
-  <i class="fa fa-star rating-color"></i>
-  <i class="fa fa-star"></i>
+<!-- Asegúrate de que el ID coincida con el selector en el JavaScript -->
+<div class="ratings pb-3" id="rating">
+  <span class="fa fa-star animated-star" data-value="1"></span>
+  <span class="fa fa-star animated-star" data-value="2"></span>
+  <span class="fa fa-star animated-star" data-value="3"></span>
+  <span class="fa fa-star animated-star" data-value="4"></span>
+  <span class="fa fa-star animated-star" data-value="5"></span>
+  <p id="Calificación-value">Calificación: 0/5 estrellas</p>
+  <p id="calif">Valoración: </p>
 </div>
+
+
 <div class="input-group">
   <input type="text" class="form-control border-end-0 border" placeholder="Escribe aquí...">
   <button type="button" class="btn btn-outline-secondary border-start-0 border" type="button"><i class='bx bx-sm bxs-send'></i></button>
