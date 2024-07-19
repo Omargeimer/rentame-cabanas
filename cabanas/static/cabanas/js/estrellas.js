@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const stars = document.querySelectorAll('#rating span');
     let selectedValue = 0;
 
-    
     stars.forEach(star => {
         star.addEventListener('mouseover', () => {
             const value = parseInt(star.getAttribute('data-value'));
