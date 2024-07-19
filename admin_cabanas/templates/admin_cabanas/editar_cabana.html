@@ -1,0 +1,78 @@
+{% extends "cabanas/layout.html" %}
+{% block titulo %}Editar Cabaña{% endblock %}
+{% block nombreApartado %}Editar Cabaña{% endblock %}
+{% load static %}
+{% block contenido%}
+<!--Formulario de Edición-->
+<form action="#">
+    <!--Input Modificar Nombre-->
+    <div class="mb-3">
+        <label for="nombreCabanaInput" class="form-label">Nombre: </label>
+        <input type="text" class="form-control" id="nombreCabanaInput" placeholder="Nombre de la Cabaña...">
+        <div id="emailHelp" class="form-text">Modifica el nombre de la cabaña.</div>
+    </div>
+    <!--/Input Modificar Nombre-->
+    <hr>
+    <!--Eliminar/Añadir Imagen-->
+    <div class="text-center">
+        <div class="g-4 row d-flex justify-content-start">
+            <div class="col col-md-4">
+                <img class="img-thumbnail" src="{% static 'admin_cabanas/images/cabana.jpg' %}">
+            </div>
+            <div class="col col-md-4">
+                <img class="img-thumbnail" src="{% static 'admin_cabanas/images/fondo_contacto.jpg' %}">
+            </div>
+            <div class="col col-md-4">
+                <img class="img-thumbnail" src="{% static 'admin_cabanas/images/fondo_registro.png' %}">
+            </div>
+        </div>
+        <button type="file" class="mt-3 btn-sample btn mb-3">Añadir Imagen</button>
+    </div>
+    <!--/Eliminar/Añadir Imagen-->
+    <hr>
+    <!--Input Modificar Anfitrión-->
+    <div class="mb-3">
+        <label for="nombreAnfitrionInput" class="form-label">Anfitrión: </label>
+        <input type="text" class="form-control" id="nombreAnfitrionInput" placeholder="Nombre del anfitrión...">
+        <div id="emailHelp" class="form-text">Modifica el nombre del anfitrión.</div>
+    </div>
+    <!--/Input Modificar Anfitrión-->
+    <div class="g-4 row d-flex justify-content-start">
+        <!--Input Modificar Capacidad Cabaña-->
+        <div class="col col-md-4">
+            <label for="capacidadInput" class="form-label">Puede albergar: </label>
+            <input class="form-control" type="number"  placeholder="Capacidad..." value="5" min="1"/>
+            <div id="emailHelp" class="form-text">Modifica la capacidad de la cabaña.</div>
+        </div>
+        <!--/Input Modificar Capacidad Cabaña-->
+        <!--Input Modificar No. de Camas-->
+        <div class="col col-md-4">
+            <label for="numCamasInput" class="form-label">No. de Camas: </label>
+            <input class="form-control" type="number"  placeholder="No. de Camas..." value="5" min="1"/>
+            <div id="emailHelp" class="form-text">Modifica el número de camas.</div>
+        </div>
+        <!--/Input Modificar No. de Camas-->
+        <!--Input Modificar Costo por Noche-->
+        <div class="col col-md-4">
+            <label for="costoInput" class="form-label">Costo por Noche: </label>
+            <input class="form-control" type="number"  placeholder="Costo por Noche..." value="1000" min="1"/>
+            <div id="emailHelp" class="form-text">Modifica costo por noche.</div>
+        </div>
+        <!--/Input Modificar Costo por Noche-->
+    </div>
+    <hr>
+    <!--Modificar Servicios-->
+    <h1 class="text-center mb-2 h-title h1 fw-normal">Servicios</h1>
+    <p>Modifique este campo, si desea cambiar los servicios de la cabaña.</p>
+    <div class="mb-3">
+        <textarea class="form-control" rows="10"  placeholder="Escribe los servicios que ofrece la cabaña..."></textarea>
+    </div>
+    <!--/Modificar Servicios-->
+    <!--Botón Actualización-->
+    <div class="text-center">
+        <button type="file" class="mt-3 btn-sample btn mb-3">Actualizar</button>
+    </div>
+    <!--/Botón Actualización-->
+</form>
+<!--/Formulario de Edición-->
+{% endblock contenido%}
