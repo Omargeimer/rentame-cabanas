@@ -45,7 +45,7 @@
         {% for cabana in cabanas %}
         <div class="col col-md-4">
             <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top">
+                <img  class="card-img-tamanoImg" src="{{ cabana.imagenes.first.ruta.url }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
                     <div class="ratings">

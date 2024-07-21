@@ -114,3 +114,18 @@ fieldset[disabled] .btn-sample.active {
 .input-group-append {
   cursor: pointer;
 }
+
+
+.card-img-tamanoImg {
+  height: 250px !important; 
+  object-fit: cover;
+  width: 100%;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
