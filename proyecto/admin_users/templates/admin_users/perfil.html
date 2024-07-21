@@ -5,7 +5,7 @@
 <form action="{% url "Editar_Perfil" %}" method="get" id="form1">
     <div class="text-center">
         <div class="h-title h1 fw-normal pb-1">Perfil</div>
-        <img class="rounded-circle" width="300" height="300" alt="icono_perfil" src="{% static 'admin_users/images/icono_perfil.webp' %}" />
+        <img class="avatar" width="300" height="300" alt="icono_perfil" src="{{user.imagen.url}}" />
         <p class="h2 fw-light pb-3"> {{user.username}} </p>
         <button type="submit" form="form1" value="Submit" class="btn-sample btn mb-3">Editar Perfil</button>
         <p>4435702310</p>

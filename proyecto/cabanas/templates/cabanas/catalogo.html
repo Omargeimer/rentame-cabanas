@@ -22,8 +22,9 @@
                             <div class="text-center pt-3">
                                 <i class = "iconos-promo bx bxs-offer"></i>
                             </div>
-                            <h5 class="card-title pt-3 text-center">{{ promocion.titulo }}</h5>
-                            <p class="card-text text-center pb-5"><b>Vigencia: </b> {{ promocion.fecha_inicio}} - {{ promocion.fecha_fin}}<br> <b>Descripción: </b>{{promocion.descripcion}}</p>
+                            <h5 class="card-title pt-3 text-center">{{ promocion.titulo }} | - {{ promocion.descuento }}%</h5>
+                            <p class="text-center text-muted"> Vigencia del {{ promocion.fecha_inicio}} al {{ promocion.fecha_fin}}</p>
+                            <p class="card-text text-center px-5 pb-5">{{promocion.descripcion}}</p>
                         </div>
                     </div>
                 </div>
@@ -44,7 +45,7 @@
         {% for cabana in cabanas %}
         <div class="col col-md-4">
             <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
-                <img src="{% static "cabanas/images/cabana.jpg" %}" class="card-img-top">
+                <img  class="card-img-tamanoImg" src="{{ cabana.imagenes.first.ruta.url }}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
                     <div class="ratings">

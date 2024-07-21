@@ -25,7 +25,7 @@ class Cabana(models.Model):
 
 class ImagenCabana(models.Model):
     id = models.AutoField(primary_key=True)
-    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="imagenes")
     ruta = models.ImageField(upload_to="imgCabanas", verbose_name="Ruta_Imagen") # Se debe crear la carpeta media/imgCabanas
     creado = models.DateTimeField(auto_now_add=True, null=True) #Fecha y tiempo
     actualizado = models.DateTimeField(auto_now=True, null=True)
