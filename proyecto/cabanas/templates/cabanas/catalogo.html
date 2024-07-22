@@ -45,15 +45,15 @@
         {% for cabana in cabanas %}
         <div class="col col-md-4">
             <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
-                <img  class="card-img-tamanoImg" src="{{ cabana.imagenes.first.ruta.url }}" class="card-img-top">
+                <img  class="card-img-tamanoImg card-img-top" src="{{ cabana.imagenes.first.ruta.url }}">
                 <div class="card-body">
                     <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
                     <div class="ratings">
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star rating-color"></i>
-                        <i class="fa fa-star"></i>
+                        <span class="fa fa-star {% if cabana.promedio_rating > 0 %}rating-color{% endif %}" id="uno"></span>
+                        <span class="fa fa-star {% if cabana.promedio_rating > 1 %}rating-color{% endif %}" id="dos"></span>
+                        <span class="fa fa-star {% if cabana.promedio_rating > 2 %}rating-color{% endif %}" id="tres"></span>
+                        <span class="fa fa-star {% if cabana.promedio_rating > 3 %}rating-color{% endif %}" id="cuatro"></span>
+                        <span class="fa fa-star {% if cabana.promedio_rating > 4 %}rating-color{% endif %}" id="cinco"></span>
                     </div>
                 <p class="card-text"><b>Anfitrión: </b> {{cabana.anfitrion}} <br> <b>Costo por noche: </b>${{ cabana.costo_noche }} MXN.</p>
                 </div>

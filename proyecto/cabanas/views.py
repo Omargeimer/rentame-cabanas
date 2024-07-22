@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from admin_cabanas.models import Cabana, ImagenCabana
+from admin_cabanas.models import Cabana
 from promociones.models import Promocion
+from valoraciones.models import Valoracion
+from django.db.models import Avg
 
 # Create your views here.
 
@@ -9,12 +11,20 @@ from promociones.models import Promocion
 def catalogo(request):
     cabanas = Cabana.objects.all()
     promociones = Promocion.objects.all()
+    
+    #Con un ciclo for obtenemos el promedio(rating) de cada cabaña
+    #para mostrarlo en el catálogo
+    for cabana in cabanas:
+        cabana.promedio_rating = cabana.promedio_rating()
+    
     return render(request, 'cabanas/catalogo.html', {'cabanas':cabanas, 'promociones':promociones})
 
-#Función vista_cabana_usuario para mostrar cuando no existe la página solicitada.
+#Función vista_cabana_usuario para mostrar una cabaña.
 def vista_cabana_usuario(request, id):
     cabana = Cabana.objects.get(id=id)
-    return render(request, 'cabanas/vista_cabana_usuario.html', {'cabanas':cabana})
+    #La siguiente consulta permite mostrar los comentarios que pertenecen a una cabaña en específico.
+    valoraciones = Valoracion.objects.filter(cabana=id)
+    return render(request, 'cabanas/vista_cabana_usuario.html', {'cabanas':cabana, 'valoraciones':valoraciones})
 
 #Función contacto para mostrar la página de contacto del sitio web.
 def contacto(request):

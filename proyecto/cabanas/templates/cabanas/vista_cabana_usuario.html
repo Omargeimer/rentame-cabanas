@@ -57,7 +57,6 @@
 <!--/Descripción apartado de comentarios-->
 
 <!--Input Comentario-->
-<!-- Asegúrate de que el ID coincida con el selector en el JavaScript -->
 <div class="ratings pb-3" id="rating">
   <span class="fa fa-star animated-star" data-value="1"></span>
   <span class="fa fa-star animated-star" data-value="2"></span>
@@ -76,26 +75,28 @@
 <!--/Input Comentario-->
 
 <!--Comentario-->
+{% for valoracion in valoraciones %}
 <div class="d-flex align-items-start mt-3">
   <div class="flex-shrink-0">
     <i class='bx bx-lg bxs-user-circle' style="color: #1c5052"></i>
   </div>
   <div class="flex-grow-1 ms-3">
     <div class="d-flex align-items-center mb-2">
-      <b>José Rodríguez </b>
+      <b>{{valoracion.usuario}} </b>
       <b class="px-2"> • </b>
       <div class="ratings">
-        <i class="fa fa-star rating-color"></i>
-        <i class="fa fa-star rating-color"></i>
-        <i class="fa fa-star rating-color"></i>
-        <i class="fa fa-star rating-color"></i>
-        <i class="fa fa-star"></i>
+        <i class="fa fa-star {% if valoracion.numero_estrellas > 0 %}rating-color{% endif %}"></i>
+        <i class="fa fa-star {% if valoracion.numero_estrellas > 1 %}rating-color{% endif %}"></i>
+        <i class="fa fa-star {% if valoracion.numero_estrellas > 2 %}rating-color{% endif %}"></i>
+        <i class="fa fa-star {% if valoracion.numero_estrellas > 3 %}rating-color{% endif %}"></i>
+        <i class="fa fa-star {% if valoracion.numero_estrellas > 4 %}rating-color{% endif %}"></i>
       </div>
     </div>
     <p class="mb-0">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam dolorum non necessitatibus quasi, dignissimos veniam quaerat esse excepturi accusantium amet cupiditate architecto a! Ipsum eos maiores nisi esse sapiente officiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nostrum vitae totam illo nobis consequatur esse molestias voluptas quo consequuntur, dolores, aspernatur obcaecati porro? Eaque error nesciunt dolorem reiciendis quasi!
+      {{valoracion.comentario}}
     </p>
   </div>
 </div>
+{% endfor %}
 <!--/Comentario-->
 {% endblock %}
