@@ -1,11 +1,16 @@
 from django.db import models
 from admin_users.models import Usuario
 from admin_cabanas.models import Cabana 
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Valoracion(models.Model):
     id = models.AutoField(primary_key=True)
     comentario = models.CharField(max_length=300)
-    numero_estrellas = models.IntegerField()
+    numero_estrellas = models.IntegerField(default=0,
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0),
+    ])
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
     creado = models.DateTimeField(auto_now=True, null=True) #Fecha y tiempo
@@ -18,5 +23,6 @@ class Valoracion(models.Model):
         #el menos indica que se ordenara del más reciente al más vie
 
     def __str__(self):
-        return f"Valoración de {self.usuario} para {self.cabana}"
+        #Se retorna el nombre de usuario, la cabaña y el número de estrellas que proporciona un usuario
+        return f"Valoración de {self.usuario} para {self.cabana}. Rating para la cabaña: {self.numero_estrellas} estrellas"
 

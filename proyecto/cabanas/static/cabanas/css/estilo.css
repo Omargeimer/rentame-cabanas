@@ -12,7 +12,12 @@ body {
   text-align: center;
 }
 
-.ratings i {
+.ratings span {
+  color: #cecece;
+  font-size: 20px;
+}
+
+.ratings i { /*Estilo para los i de rating en vista_cabana_usuario*/
   color: #cecece;
   font-size: 20px;
 }
@@ -27,7 +32,7 @@ body {
   font-size: 24px !important;
 }
 
-.small-ratings i {
+.small-ratings span {
   color: #cecece;
 }
 
