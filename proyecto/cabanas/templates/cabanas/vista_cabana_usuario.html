@@ -57,46 +57,54 @@
 <!--/Descripción apartado de comentarios-->
 
 <!--Input Comentario-->
-<div class="ratings pb-3" id="rating">
-  <span class="fa fa-star animated-star" data-value="1" id="1"></span>
-  <span class="fa fa-star animated-star" data-value="2" id="2"></span>
-  <span class="fa fa-star animated-star" data-value="3" id="3"></span>
-  <span class="fa fa-star animated-star" data-value="4"id="4"></span>
-  <span class="fa fa-star animated-star" data-value="5" id="5"></span>
-  <p id="Calificación-value">Calificación: 0/5 estrellas</p>
-  <p id="calif">Valoración: </p>
-</div>
-
-
-<div class="input-group">
-  <input type="text" class="form-control border-end-0 border" placeholder="Escribe aquí...">
-  <button type="button" class="btn-enviar-comentario btn btn-outline-secondary border-start-0 border" type="button"><i class='bx bx-sm bxs-send'></i></button>
-</div>
+<form action="{% url 'RegistrarValoracion' cabanas.id%}" method="POST">
+  {% csrf_token %}
+  <div class="ratings pb-3" id="rating">
+    <input type="hidden" name="numero_estrellas" value="0" required>
+    <input type="hidden" name="usuario" id="usuario" value="{{user.id}}" required>
+    <input type="hidden" name="cabana" id="cabana" value="{{cabanas.id}}" required>
+    <span class="fa fa-star animated-star" data-value="1" id="1"></span>
+    <span class="fa fa-star animated-star" data-value="2" id="2"></span>
+    <span class="fa fa-star animated-star" data-value="3" id="3"></span>
+    <span class="fa fa-star animated-star" data-value="4" id="4"></span>
+    <span class="fa fa-star animated-star" data-value="5" id="5"></span>
+    <p id="Calificación-value">Calificación: 0/5 estrellas</p>
+    <p id="calif">Valoración: </p>
+  </div>
+  <div class="input-group">
+    <input type="text" class="form-control border-end-0 border" name="comentario" placeholder="Escribe aquí..." required>
+    <button type="submit" class="btn-enviar-comentario btn btn-outline-secondary border-start-0 border" ><i class='bx bx-sm bxs-send'></i></button>
+  </div>
+</form>
 <!--/Input Comentario-->
 
 <!--Comentario-->
-{% for valoracion in valoraciones %}
-<div class="d-flex align-items-start mt-3">
-  <div class="flex-shrink-0">
-    <i class='bx bx-lg bxs-user-circle' style="color: #1c5052"></i>
-  </div>
-  <div class="flex-grow-1 ms-3">
-    <div class="d-flex align-items-center mb-2">
-      <b>{{valoracion.usuario}} </b>
-      <b class="px-2"> • </b>
-      <div class="ratings">
-        <i class="fa fa-star {% if valoracion.numero_estrellas > 0 %}rating-color{% endif %}"></i>
-        <i class="fa fa-star {% if valoracion.numero_estrellas > 1 %}rating-color{% endif %}"></i>
-        <i class="fa fa-star {% if valoracion.numero_estrellas > 2 %}rating-color{% endif %}"></i>
-        <i class="fa fa-star {% if valoracion.numero_estrellas > 3 %}rating-color{% endif %}"></i>
-        <i class="fa fa-star {% if valoracion.numero_estrellas > 4 %}rating-color{% endif %}"></i>
-      </div>
+{% if valoraciones %}
+  {% for valoracion in valoraciones %}
+  <div class="d-flex align-items-start mt-3">
+    <div class="flex-shrink-0">
+      <i class='bx bx-lg bxs-user-circle' style="color: #1c5052"></i>
     </div>
-    <p class="mb-0">
-      {{valoracion.comentario}}
-    </p>
+    <div class="flex-grow-1 ms-3">
+      <div class="d-flex align-items-center mb-2">
+        <b>{{valoracion.usuario}} </b>
+        <b class="px-2"> • </b>
+        <div class="ratings">
+          <i class="fa fa-star {% if valoracion.numero_estrellas > 0 %}rating-color{% endif %}" id=""></i>
+          <i class="fa fa-star {% if valoracion.numero_estrellas > 1 %}rating-color{% endif %}"></i>
+          <i class="fa fa-star {% if valoracion.numero_estrellas > 2 %}rating-color{% endif %}"></i>
+          <i class="fa fa-star {% if valoracion.numero_estrellas > 3 %}rating-color{% endif %}"></i>
+          <i class="fa fa-star {% if valoracion.numero_estrellas > 4 %}rating-color{% endif %}"></i>
+        </div>
+      </div>
+      <p class="mb-0">
+        {{valoracion.comentario}}
+      </p>
+    </div>
   </div>
-</div>
-{% endfor %}
+  {% endfor %}
+{% else %}
+<p class="text-muted text-center pt-5"> No hay comentarios para mostrar.</p>
+{% endif %}
 <!--/Comentario-->
 {% endblock %}

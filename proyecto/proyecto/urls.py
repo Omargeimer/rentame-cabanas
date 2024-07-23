@@ -42,6 +42,7 @@ urlpatterns = [
     path('login', views_users.login, name='Login'),
     path('registro', views_users.registro, name='Registro'),
     path('logout', views_cabanas.logout_user, name='LogOut'),
+    path('registrarValoracion/<int:id>/', views_cabanas.registrarValoracion, name='RegistrarValoracion')
     #path('prueba', views_cabanas.prueba, name='Prueba')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

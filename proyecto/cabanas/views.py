@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
 from admin_cabanas.models import Cabana
 from promociones.models import Promocion
 from valoraciones.models import Valoracion
-from django.db.models import Avg
+from valoraciones.forms import ValoracionForm
 
 # Create your views here.
 
@@ -25,6 +25,22 @@ def vista_cabana_usuario(request, id):
     #La siguiente consulta permite mostrar los comentarios que pertenecen a una cabaña en específico.
     valoraciones = Valoracion.objects.filter(cabana=id)
     return render(request, 'cabanas/vista_cabana_usuario.html', {'cabanas':cabana, 'valoraciones':valoraciones})
+
+def registrarValoracion(request, id):
+    cabana = get_object_or_404(Cabana, id=id)
+    #La siguiente consulta permite mostrar los comentarios que pertenecen a una cabaña en específico.
+    valoraciones = Valoracion.objects.filter(cabana=id)
+    if request.method == 'POST':
+        form = ValoracionForm(request.POST)
+        if form.is_valid(): #si los datos recibidos son correctos
+            form.save()
+            return render(request,'cabanas/vista_cabana_usuario.html', {'form':form,'cabanas':cabana, 'valoraciones':valoraciones})
+        else:
+            print('Datos inválidos')
+            print(form.errors) #imprime el error del form
+    form = ValoracionForm() 
+
+    return render(request, 'cabanas/vista_cabana_usuario.html')
 
 #Función contacto para mostrar la página de contacto del sitio web.
 def contacto(request):
