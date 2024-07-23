@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Muestra la cantidad de estrellas
             document.getElementById('Calificación-value').textContent = `Calificación: ${selectedValue}/5 estrellas`;
 
-            // Guarda el valor en el campo oculto
+            // Guarda el valor del numero_estrellas en el campo oculto de mismo nombre
             numeroEstrellasInput.value = selectedValue;
 
             console.log(selectedValue);
