@@ -35,11 +35,14 @@ urlpatterns = [
     path('editar_perfil/', views_users.editar_perfil, name='Editar_Perfil'),
     path('vista_cabana_usuario/<int:id>', views_cabanas.vista_cabana_usuario, name='Vista_Cabana_Usuario'),
     path('rentar_cabana', views_renta.rentar_cabana, name='Rentar_Cabana'),
+    path('rentar/<int:cabana_id>/', views_renta.crear_renta, name='crear_renta'),
+    path('success/', views_renta.success, name='success'),
     path('editar_cabana', views_admin.editar_cabana, name='Editar_Cabana'),
     path('crear_cabana', views_admin.crear_cabana, name='Crear_Cabana'),
     path('login', views_users.login, name='Login'),
     path('registro', views_users.registro, name='Registro'),
     path('logout', views_cabanas.logout_user, name='LogOut'),
+    path('registrarValoracion/<int:id>/', views_cabanas.registrarValoracion, name='RegistrarValoracion')
     #path('prueba', views_cabanas.prueba, name='Prueba')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.db.models import Avg
 
 
 class Cabana(models.Model):
@@ -20,12 +21,18 @@ class Cabana(models.Model):
         verbose_name_plural="Cabañas"
         ordering = ["-creado"]
         #el menos indica que se ordenara del más reciente al más viejo
+
+    #La función promedio_rating permite obtener el promedio de valoraciones de una cabaña
+    def promedio_rating(self) -> float:
+        from valoraciones.models import Valoracion
+        return Valoracion.objects.filter(cabana=self).aggregate(Avg('numero_estrellas'))['numero_estrellas__avg'] or 0
+
     def __str__(self):
         return self.nombre
 
 class ImagenCabana(models.Model):
     id = models.AutoField(primary_key=True)
-    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
+    cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE, related_name="imagenes")
     ruta = models.ImageField(upload_to="imgCabanas", verbose_name="Ruta_Imagen") # Se debe crear la carpeta media/imgCabanas
     creado = models.DateTimeField(auto_now_add=True, null=True) #Fecha y tiempo
     actualizado = models.DateTimeField(auto_now=True, null=True)

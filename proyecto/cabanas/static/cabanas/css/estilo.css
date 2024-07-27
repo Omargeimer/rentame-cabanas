@@ -12,7 +12,12 @@ body {
   text-align: center;
 }
 
-.ratings i {
+.ratings span {
+  color: #cecece;
+  font-size: 20px;
+}
+
+.ratings i { /*Estilo para los i de rating en vista_cabana_usuario*/
   color: #cecece;
   font-size: 20px;
 }
@@ -27,7 +32,7 @@ body {
   font-size: 24px !important;
 }
 
-.small-ratings i {
+.small-ratings span {
   color: #cecece;
 }
 
@@ -113,4 +118,66 @@ fieldset[disabled] .btn-sample.active {
 
 .input-group-append {
   cursor: pointer;
+}
+
+
+.card-img-tamanoImg {
+  height: 250px !important; 
+  object-fit: cover;
+  width: 100%;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+
+.btn-enviar-comentario { 
+  color: #F2F2F2 !important; 
+  background-color: #1C5052 !important; 
+  border-color: #1c5052 !important; 
+} 
+ 
+.btn-enviar-comentario:hover, 
+.btn-enviar-comentario:focus, 
+.btn-enviar-comentario:active, 
+.btn-enviar-comentario.active, 
+.open .dropdown-toggle.btn-enviar-comentario { 
+  color: #F2F2F2 !important; 
+  background-color: #213635 !important; 
+  border-color: #1c5052 !important; 
+} 
+ 
+.btn-enviar-comentario:active, 
+.btn-enviar-comentario.active, 
+.open .dropdown-toggle.btn-enviar-comentario { 
+  background-image: none; 
+} 
+ 
+.btn-enviar-comentario.disabled, 
+.btn-enviar-comentario[disabled], 
+fieldset[disabled] .btn-enviar-comentario, 
+.btn-enviar-comentario.disabled:hover, 
+.btn-enviar-comentario[disabled]:hover, 
+fieldset[disabled] .btn-enviar-comentario:hover, 
+.btn-enviar-comentario.disabled:focus, 
+.btn-enviar-comentario[disabled]:focus, 
+fieldset[disabled] .btn-enviar-comentario:focus, 
+.btn-enviar-comentario.disabled:active, 
+.btn-enviar-comentario[disabled]:active, 
+fieldset[disabled] .btn-enviar-comentario:active, 
+.btn-enviar-comentario.disabled.active, 
+.btn-enviar-comentario[disabled].active, 
+fieldset[disabled] .btn-enviar-comentario.active { 
+  background-color: #1C5052 !important; 
+  border-color: #1c5052 !important; 
+} 
+ 
+.btn-enviar-comentario .badge { 
+  color: #1C5052 !important; 
+  background-color: #F2F2F2 !important; 
 }
