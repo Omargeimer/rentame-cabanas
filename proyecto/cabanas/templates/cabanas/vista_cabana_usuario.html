@@ -30,7 +30,7 @@
 <!--Descripción  general de la cabaña-->
 <div class="d-flex bd-highlight">
   <p class="h3 fw-light w-100 bd-highlight my-2">{{cabanas.ubicacion}}</p>
-  <form action="{% url "Rentar_Cabana" %}" id="renta" method="get">
+  <form action="{% url 'Rentar_Cabana' cabanas.id%}" id="renta" method="get">
     <button type="submit" form="renta" value="Submit" class="btn-sample btn mb-3 px-5 my-2">Rentar</button>
   </form>
 </div>

@@ -3,7 +3,7 @@ from .models import Renta
 from promociones.models import Promocion
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-
+#add changes
 class RentaForm(forms.ModelForm):
     metodo_pago_choices = [
         ('paypal', 'PayPal'),
@@ -20,7 +20,9 @@ class RentaForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.cabana = kwargs.pop('cabana', None)
         super().__init__(*args, **kwargs)
-        self.fields['promocion'].queryset = Promocion.objects.filter(fecha_fin__gte=timezone.now())
+        promociones = Promocion.objects.filter(fecha_fin__gte=timezone.now())
+        promocion_choices = [(promocion.id, f"{promocion.titulo} ({promocion.descuento}%)") for promocion in promociones]
+        self.fields['promocion'].choices = promocion_choices
     
     def clean(self):
         cleaned_data = super().clean()

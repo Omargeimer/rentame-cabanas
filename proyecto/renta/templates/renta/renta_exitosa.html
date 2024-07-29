@@ -1,0 +1,28 @@
+{% extends "cabanas/layout.html" %}
+{% block titulo %}Cabaña Rentada{% endblock %}
+{% block nombreApartado %}Cabaña Rentada con éxito{% endblock nombreApartado %}
+{% block contenido %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-header">
+                  <h5 class="card-title">¡Gracias por rentar esta cabaña!</h5>
+              </div>
+              <div class="card-body">
+                  <p><strong>Código de acceso:</strong> RenC{{ renta.id }}</p>
+                  <p><strong>Fecha de inicio:</strong> {{ renta.fecha_inicio }}</p>
+                  <p><strong>Fecha de fin:</strong> {{ renta.fecha_fin }}</p>
+                  <p><strong>Costo total:</strong> {{ renta.total }}</p>
+                  <p><strong>Metodo de pago:</strong> {{ renta.metodo_pago }}</p>
+                  <p><strong>Código QR de acceso:</strong></p>
+                  <img src="{{ qr_code_url }}" alt="Código QR de la renta">
+              </div>
+              <div class="card-footer text-right">
+                  <a href="/" class="btn btn-primary btn-sample">Regresar al inicio</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
