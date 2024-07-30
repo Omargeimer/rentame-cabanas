@@ -28,7 +28,6 @@
             var fechasOcupadas = {{ fechas_ocupadas|safe }};
             console.log('Fechas Ocupadas:', fechasOcupadas);
       
-            // Asegúrate de que los campos de fecha son de tipo texto para que el datepicker se aplique
             $('#id_fecha_inicio, #id_fecha_fin').attr('type', 'text');
       
             function disableDates(date) {
