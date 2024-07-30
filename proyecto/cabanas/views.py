@@ -5,13 +5,16 @@ from promociones.models import Promocion
 from valoraciones.models import Valoracion
 from valoraciones.forms import ValoracionForm
 from renta.models import Renta
+from django.utils import timezone
 
 # Create your views here.
 
 #Función catalogo para mostrar la página principal del sitio web.
 def catalogo(request):
     cabanas = Cabana.objects.all()
-    promociones = Promocion.objects.all()
+
+    fecha_actual = timezone.now().date()
+    promociones = Promocion.objects.filter(fecha_fin__gte=fecha_actual)
     
     #Con un ciclo for obtenemos el promedio(rating) de cada cabaña
     #para mostrarlo en el catálogo
