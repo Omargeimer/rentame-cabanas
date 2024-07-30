@@ -4,19 +4,48 @@ from .models import Renta
 from admin_cabanas.models import Cabana
 from .forms import RentaForm
 from datetime import datetime, timedelta
+import qrcode
+import base64
+from io import BytesIO
+from django.shortcuts import render
+from .models import Renta
 
-#Función rentar_cabana para mostrar la vista de renta.
-def rentar_cabana(request):
-    return render(request, 'renta/rentar_cabana.html')
 
-#Función rentar_cabana para mostrar la vista de renta.
-def success(request):
-    return render(request, 'renta/success.html')
+def renta_exitosa(request, renta_id):
+    renta = Renta.objects.get(id=renta_id)
+    codigo_renta = f"RenC{renta.id}"
 
+    # Generar el código QR
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(codigo_renta)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    # Convertir la imagen en base64
+    img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    qr_code_url = f"data:image/png;base64,{img_base64}"
+
+    # Pasar la URL del código QR al template
+    context = {
+        'renta': renta,
+        'qr_code_url': qr_code_url,
+    }
+
+    return render(request, 'renta/renta_exitosa.html', context)
 
 @login_required
-def crear_renta(request, cabana_id):
-    cabana = get_object_or_404(Cabana, id=cabana_id)
+#Función rentar_cabana para mostrar la vista de renta.
+def rentar_cabana(request, cabanas_id):
+    cabana = get_object_or_404(Cabana, id=cabanas_id)
     usuario = request.user
     rentas = Renta.objects.filter(cabana=cabana)
     
@@ -42,7 +71,8 @@ def crear_renta(request, cabana_id):
                 total_con_promocion = total * (1 - descuento)
             
             if 'preview' in request.POST:
-                return render(request, 'renta/crear_renta.html', {
+                
+                return render(request, 'renta/rentar_cabana.html', {
                     'form': form, 
                     'cabana': cabana, 
                     'fechas_ocupadas': fechas_ocupadas,
@@ -56,12 +86,13 @@ def crear_renta(request, cabana_id):
             renta.usuario = usuario
             renta.total = total_con_promocion
             renta.save()
-            return redirect('success')
+            return redirect('renta_exitosa', renta_id=renta.id)
     else:
         form = RentaForm(cabana=cabana)
     
-    return render(request, 'renta/crear_renta.html', {
+    return render(request, 'renta/rentar_cabana.html', {
         'form': form, 
         'cabana': cabana, 
         'fechas_ocupadas': fechas_ocupadas
     })
+

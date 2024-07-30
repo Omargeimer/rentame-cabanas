@@ -7,6 +7,7 @@
 
     <p class="h2 fw-light pb-3">Promociones</p>
     <!--Promociones-->
+    {% if promociones %}
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <ol class="carousel-indicators">
             {% for i in promociones %}
@@ -38,28 +39,35 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
     </div>
+    {% else %}
+        <p class="text-muted text-center pt-5"> No hay promociones para mostrar.</p>
+    {% endif %}
     <!--Promociones-->
     <hr>
     <!--Cabañas Disponibles-->
     <div class="row g-4">
-        {% for cabana in cabanas %}
-        <div class="col col-md-4">
-            <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
-                <img  class="card-img-tamanoImg card-img-top" src="{{ cabana.imagenes.first.ruta.url }}">
-                <div class="card-body">
-                    <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
-                    <div class="ratings">
-                        <span class="fa fa-star {% if cabana.promedio_rating > 0 %}rating-color{% endif %}" id="uno"></span>
-                        <span class="fa fa-star {% if cabana.promedio_rating > 1 %}rating-color{% endif %}" id="dos"></span>
-                        <span class="fa fa-star {% if cabana.promedio_rating > 2 %}rating-color{% endif %}" id="tres"></span>
-                        <span class="fa fa-star {% if cabana.promedio_rating > 3 %}rating-color{% endif %}" id="cuatro"></span>
-                        <span class="fa fa-star {% if cabana.promedio_rating > 4 %}rating-color{% endif %}" id="cinco"></span>
+        {% if cabanas %}
+            {% for cabana in cabanas %}
+            <div class="col col-md-4">
+                <a href="{% url 'Vista_Cabana_Usuario' cabana.id%}" class="text-decoration-none text-body card" >
+                    <img  class="card-img-tamanoImg card-img-top" src="{{ cabana.imagenes.first.ruta.url }}">
+                    <div class="card-body">
+                        <h5 class="card-title text-center"> {{ cabana.nombre}} </h5>
+                        <div class="ratings">
+                            <i class="fa fa-star {% if cabana.promedio_rating > 0 %}rating-color{% endif %}" id="uno"></i>
+                            <i class="fa fa-star {% if cabana.promedio_rating > 1 %}rating-color{% endif %}" id="dos"></i>
+                            <i class="fa fa-star {% if cabana.promedio_rating > 2 %}rating-color{% endif %}" id="tres"></i>
+                            <i class="fa fa-star {% if cabana.promedio_rating > 3 %}rating-color{% endif %}" id="cuatro"></i>
+                            <i class="fa fa-star {% if cabana.promedio_rating > 4 %}rating-color{% endif %}" id="cinco"></i>
+                        </div>
+                    <p class="card-text"><b>Anfitrión: </b> {{cabana.anfitrion}} <br> <b>Costo por noche: </b>${{ cabana.costo_noche }} MXN.</p>
                     </div>
-                <p class="card-text"><b>Anfitrión: </b> {{cabana.anfitrion}} <br> <b>Costo por noche: </b>${{ cabana.costo_noche }} MXN.</p>
-                </div>
-            </a>
-        </div>
-        {% endfor %}
+                </a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-muted text-center pt-5"> No hay cabañas para mostrar.</p>
+        {% endif %}
     </div>
     <!--/Cabañas Disponibles-->
     
