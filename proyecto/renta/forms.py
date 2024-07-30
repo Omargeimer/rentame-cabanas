@@ -3,7 +3,6 @@ from .models import Renta
 from promociones.models import Promocion
 from django.utils import timezone
 from django.core.exceptions import ValidationError
-#add changes
 class RentaForm(forms.ModelForm):
     metodo_pago_choices = [
         ('paypal', 'PayPal'),
