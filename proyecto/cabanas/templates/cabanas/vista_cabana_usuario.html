@@ -56,27 +56,53 @@
 <p>Describe tu experiencia durante tu estadía en la cabaña.</p>
 <!--/Descripción apartado de comentarios-->
 
-<!--Input Comentario-->
-<form action="{% url 'RegistrarValoracion' cabanas.id%}" method="POST">
-  {% csrf_token %}
-  <div class="ratings pb-3" id="rating">
-    <input type="hidden" name="numero_estrellas" value="0" required>
-    <input type="hidden" name="usuario" id="usuario" value="{{user.id}}" required>
-    <input type="hidden" name="cabana" id="cabana" value="{{cabanas.id}}" required>
-    <span class="fa fa-star animated-star" data-value="1" id="1"></span>
-    <span class="fa fa-star animated-star" data-value="2" id="2"></span>
-    <span class="fa fa-star animated-star" data-value="3" id="3"></span>
-    <span class="fa fa-star animated-star" data-value="4" id="4"></span>
-    <span class="fa fa-star animated-star" data-value="5" id="5"></span>
-    <p id="Calificación-value">Calificación: 0/5 estrellas</p>
-    <p id="calif">Valoración: </p>
+<!-- Verificamos que el usuario esté autenticado para poder realizar un comentario -->
+{% if user.is_authenticated %}
+  <!-- Verificamos que el usuario ha rentado la cabaña y, por lo tanto, puede comentar -->
+  {% if aprobacion_comentario %}
+    <!--Si el usuario ha rentado la cabaña, pero ya realizó un comentario. Se mostrará una notificación sobre ello-->
+    {% if verificacion_valoracion %}
+      <div class="alert alert-warning text-center" role="alert">
+        Previamente, has realizado un comentario para esta cabaña.
+      </div>
+    {% else %}
+      <!-- Input Comentario -->
+      <form action="{% url 'RegistrarValoracion' cabanas.id %}" method="POST">
+        {% csrf_token %}
+        <div class="ratings pb-3" id="rating">
+          <input type="hidden" name="numero_estrellas" value="0" required>
+          <input type="hidden" name="usuario" id="usuario" value="{{ user.id }}" required>
+          <input type="hidden" name="cabana" id="cabana" value="{{ cabanas.id }}" required>
+          <span class="fa fa-star animated-star" data-value="1" id="1"></span>
+          <span class="fa fa-star animated-star" data-value="2" id="2"></span>
+          <span class="fa fa-star animated-star" data-value="3" id="3"></span>
+          <span class="fa fa-star animated-star" data-value="4" id="4"></span>
+          <span class="fa fa-star animated-star" data-value="5" id="5"></span>
+          <p id="Calificación-value">Calificación: 0/5 estrellas</p>
+          <p id="calif">Valoración: </p>
+        </div>
+        <div class="input-group">
+          <input type="text" class="form-control border-end-0 border" name="comentario" placeholder="Escribe aquí..." required>
+          <button type="submit" class="btn-enviar-comentario btn btn-outline-secondary border-start-0 border">
+            <i class='bx bx-sm bxs-send'></i>
+          </button>
+        </div>
+      </form>
+      <!-- /Input Comentario -->
+    {% endif %}
+  {% else %}
+    <!-- El usuario está autenticado pero no ha rentado la cabaña -->
+    <div class="alert alert-warning text-center" role="alert">
+      No has rentado esta cabaña, por lo tanto, no puedes realizar un comentario.
+    </div>
+  {% endif %}
+{% else %}
+  <!-- El usuario no está autenticado -->
+  <div class="alert alert-secondary text-center" role="alert">
+    Inicia sesión para realizar un comentario.
   </div>
-  <div class="input-group">
-    <input type="text" class="form-control border-end-0 border" name="comentario" placeholder="Escribe aquí..." required>
-    <button type="submit" class="btn-enviar-comentario btn btn-outline-secondary border-start-0 border" ><i class='bx bx-sm bxs-send'></i></button>
-  </div>
-</form>
-<!--/Input Comentario-->
+{% endif %}
+
 
 <!--Comentario-->
 {% if valoraciones %}
