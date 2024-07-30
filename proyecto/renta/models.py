@@ -9,11 +9,11 @@ class Renta(models.Model):
     id = models.AutoField(primary_key=True)
     cabana = models.ForeignKey(Cabana, on_delete=models.CASCADE)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    fecha_inicio = models.DateField()
-    fecha_fin = models.DateField()
-    metodo_pago = models.CharField(max_length=50)
+    fecha_inicio = models.DateField(verbose_name='Selecciona la fecha de llegada')
+    fecha_fin = models.DateField(verbose_name='Selecciona la fecha de salida')
+    metodo_pago = models.CharField(max_length=50, verbose_name='Selecciona el metodo de pago')
     total = models.FloatField()
-    promocion = models.ForeignKey(Promocion, on_delete=models.SET_NULL, null=True, blank=True)
+    promocion = models.ForeignKey(Promocion, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Selecciona una promoción')
     creado = models.DateTimeField(auto_now=True, null=True) #Fecha y tiempo
     actualizado = models.DateTimeField(auto_now_add=True, null=True)
     
