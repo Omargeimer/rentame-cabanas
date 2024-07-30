@@ -4,6 +4,7 @@ from admin_cabanas.models import Cabana
 from promociones.models import Promocion
 from valoraciones.models import Valoracion
 from valoraciones.forms import ValoracionForm
+from renta.models import Renta
 
 # Create your views here.
 
@@ -22,25 +23,46 @@ def catalogo(request):
 #Función vista_cabana_usuario para mostrar una cabaña.
 def vista_cabana_usuario(request, id):
     cabana = Cabana.objects.get(id=id)
+    usuario = request.user
+    
+    # La siguiente condición verifica si el usuario está autenticado
+    #si es así, se verifica que el usuario haya realizado un comentario en la cabaña en cuestión
+    if usuario.is_authenticated:
+        aprobacion_comentario = Renta.objects.filter(usuario=usuario, cabana=cabana).exists()
+        #se verifica si el usuario realizó un comentario para la cabaña ya rentada
+        verificacion_valoracion = Valoracion.objects.filter(usuario=usuario, cabana=cabana).exists()
+    else:
+        aprobacion_comentario = False
+        verificacion_valoracion = False
+
     #La siguiente consulta permite mostrar los comentarios que pertenecen a una cabaña en específico.
     valoraciones = Valoracion.objects.filter(cabana=id)
-    return render(request, 'cabanas/vista_cabana_usuario.html', {'cabanas':cabana, 'valoraciones':valoraciones})
+    return render(
+        request, 
+        'cabanas/vista_cabana_usuario.html', 
+        {
+            'cabanas':cabana, 
+            'valoraciones':valoraciones, 
+            'aprobacion_comentario':aprobacion_comentario,
+            'verificacion_valoracion':verificacion_valoracion
+        }
+    )
 
 def registrarValoracion(request, id):
     cabana = get_object_or_404(Cabana, id=id)
-    #La siguiente consulta permite mostrar los comentarios que pertenecen a una cabaña en específico.
     valoraciones = Valoracion.objects.filter(cabana=id)
     if request.method == 'POST':
         form = ValoracionForm(request.POST)
-        if form.is_valid(): #si los datos recibidos son correctos
+        if form.is_valid():  # si los datos recibidos son correctos
             form.save()
-            return render(request,'cabanas/vista_cabana_usuario.html', {'form':form,'cabanas':cabana, 'valoraciones':valoraciones})
+            return redirect('Vista_Cabana_Usuario', id=cabana.id) #Se redirige a la vista de la cabaña que corresponde al id de la misma
         else:
             print('Datos inválidos')
-            print(form.errors) #imprime el error del form
-    form = ValoracionForm() 
+            print(form.errors)  # imprime el error del form
+    else:
+        form = ValoracionForm()
 
-    return render(request, 'cabanas/vista_cabana_usuario.html')
+    return render(request, 'cabanas/vista_cabana_usuario.html', {'form': form, 'cabanas': cabana, 'valoraciones': valoraciones})
 
 #Función contacto para mostrar la página de contacto del sitio web.
 def contacto(request):

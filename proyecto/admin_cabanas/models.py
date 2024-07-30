@@ -26,6 +26,12 @@ class Cabana(models.Model):
     def promedio_rating(self) -> float:
         from valoraciones.models import Valoracion
         return Valoracion.objects.filter(cabana=self).aggregate(Avg('numero_estrellas'))['numero_estrellas__avg'] or 0
+    
+    def comprobar_renta(self, usuario):
+        from renta.models import Renta
+        # Verifica que el usuario ha rentado esta cabaña
+        return Renta.objects.filter(usuario=usuario, cabana=self).exists()
+
 
     def __str__(self):
         return self.nombre
