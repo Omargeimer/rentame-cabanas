@@ -4,29 +4,31 @@
 {% load static %}
 {% block contenido %}
 
-<!--Carousel-->
+{% if imagenes_cabana %}
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{% static 'cabanas/images/fondo_contacto.jpg' %}" class="d-block w-100">
+    <ol class="carousel-indicators">
+        {% for i in imagenes_cabana %}
+            <li data-bs-target="#carouselExampleDark" data-bs-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active" {% endif %}></li>
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner" style="height: 500px;">
+        {% for imagen in imagenes_cabana %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ imagen.ruta.url }}" class="d-block w-100 img-fluid">
+        </div>
+        {% endfor %}
     </div>
-    <div class="carousel-item">
-      <img src="{% static 'cabanas/images/fondo_registro.png' %}" class="d-block w-100">
-    </div>
-    <div class="carousel-item">
-      <img src="{% static 'cabanas/images/cabana.jpg' %}" class="d-block w-100">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Anterior</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Siguiente</span>
-  </button>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </button>
 </div>
-<!--/Carousel-->
+{% else %}
+    <p class="text-muted text-center pt-5">No hay imágenes para mostrar.</p>
+{% endif %}
+
 <!--Descripción  general de la cabaña-->
 <div class="d-flex bd-highlight">
   <p class="h3 fw-light w-100 bd-highlight my-2">{{cabanas.ubicacion}}</p>
