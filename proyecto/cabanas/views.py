@@ -5,13 +5,16 @@ from promociones.models import Promocion
 from valoraciones.models import Valoracion
 from valoraciones.forms import ValoracionForm
 from renta.models import Renta
+from django.utils import timezone
 
 # Create your views here.
 
 #Función catalogo para mostrar la página principal del sitio web.
 def catalogo(request):
     cabanas = Cabana.objects.all()
-    promociones = Promocion.objects.all()
+
+    fecha_actual = timezone.now().date()
+    promociones = Promocion.objects.filter(fecha_fin__gte=fecha_actual)
     
     #Con un ciclo for obtenemos el promedio(rating) de cada cabaña
     #para mostrarlo en el catálogo
@@ -63,10 +66,6 @@ def registrarValoracion(request, id):
         form = ValoracionForm()
 
     return render(request, 'cabanas/vista_cabana_usuario.html', {'form': form, 'cabanas': cabana, 'valoraciones': valoraciones})
-
-#Función contacto para mostrar la página de contacto del sitio web.
-def contacto(request):
-    return render(request, 'cabanas/contacto.html')
 
 #Función sobre_nosotros para mostrar la página de información del sitio web.
 def sobre_nosotros(request):

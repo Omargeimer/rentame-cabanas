@@ -10,14 +10,22 @@
             <div class="text-center">
               <div class="h-title h1 fw-normal">Contáctanos</div>
             </div>
-            <p class="mb-4 text-muted">Escriba un comentario sugerencia.</p>
-            <form action="#" method="get" id="contactForm" data-sb-form-api-token="API_TOKEN">
-
+            <p class="mb-4 text-muted">Escriba un comentario sugerencia. Todas sus observaciones son completamente anónimas.</p>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form action="{% url 'Registrar_Comentario_Contacto'%}" method="POST" id="contactForm">
+              {% csrf_token %}
               <!-- Mensaje Input -->
               <div class="form-floating mb-3">
-                <textarea class="form-control" id="message" type="text" placeholder="Escriba aquí..." style="height: 10rem;" data-sb-validations="required" required></textarea>
-                <label for="message">Mensaje</label>
-                <div class="invalid-feedback" data-sb-feedback="message:required">Se requiere un mensaje para enviar.</div>
+                <textarea class="form-control" id="comentario" name="comentario" type="text" placeholder="Escriba aquí..." style="height: 10rem;" data-sb-validations="required" required></textarea>
+                <label for="comentario">Mensaje</label>
+                <div class="invalid-feedback" data-sb-feedback="comentario:required">Se requiere un mensaje para enviar.</div>
               </div>
               <!--Botón-->
               <div class="text-center">
