@@ -67,10 +67,6 @@ def registrarValoracion(request, id):
 
     return render(request, 'cabanas/vista_cabana_usuario.html', {'form': form, 'cabanas': cabana, 'valoraciones': valoraciones})
 
-#Función contacto para mostrar la página de contacto del sitio web.
-def contacto(request):
-    return render(request, 'cabanas/contacto.html')
-
 #Función sobre_nosotros para mostrar la página de información del sitio web.
 def sobre_nosotros(request):
     return render(request, 'cabanas/sobre_nosotros.html')

@@ -12,7 +12,17 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as message_constants
 
+MESSAGE_LEVEL = message_constants.DEBUG
+
+MESSAGE_TAGS = {
+    message_constants.DEBUG: 'alert-dark',
+    message_constants.INFO: 'alert-info',
+    message_constants.SUCCESS: 'alert-success',
+    message_constants.WARNING: 'alert-warning',
+    message_constants.ERROR: 'alert-danger',
+}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -50,6 +60,7 @@ INSTALLED_APPS = [
     'valoraciones.apps.ValoracionesConfig',
     'ckeditor',
     'colorfield',
+    'contacto.apps.ContactoConfig',
     ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

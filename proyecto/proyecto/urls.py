@@ -20,6 +20,7 @@ from cabanas import views as views_cabanas
 from admin_users import views as views_users
 from renta import views as views_renta
 from admin_cabanas import views as views_admin
+from contacto import views as views_contacto
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -28,7 +29,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', views_cabanas.catalogo, name='Catalogo'),
-    path('contacto/', views_cabanas.contacto, name='Contacto'),
+    path('contacto/', views_contacto.contacto, name='Contacto'),
+    path('registrar_comentario_contacto/', views_contacto.registrar_comentario, name='Registrar_Comentario_Contacto'),
     path('sobre_nosotros/', views_cabanas.sobre_nosotros, name='Sobre_Nosotros'),
     path('perfil/', views_users.perfil, name='Perfil'),
     path('error_404/', views_cabanas.error_404, name='Error_404'),
