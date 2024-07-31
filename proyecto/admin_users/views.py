@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm
+from django.contrib.auth import authenticate, login as auth_login
 
 # Create your views here.
 
@@ -13,9 +15,18 @@ def editar_perfil(request):
     return render(request, 'admin_users/editar_perfil.html')
 
 #Función login para mostrar el inicio de sesión.
-def login(request):
+def user_login(request):
     return render(request, 'admin_users/login.html')
 
-#Función registro para mostrar el registro.
-def registro(request):
-    return render(request, 'admin_users/registro.html')
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()  
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            if user is not None:
+                auth_login(request, user)
+                return redirect('Catalogo')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
