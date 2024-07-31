@@ -6,12 +6,14 @@
 {% load crispy_forms_tags %}
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <div class="card mx-auto" style="width: 30rem;">
-        <div class="card-body">
-            <h4 class="card-title">Realiza el registro</h4>
-            <h5 class="card-title">Completa todos los campos</h5>
+    <div class="card p-2 rounded-3 shadow-lg">
+        <div class="card-body p-4">
+            <div class="pb-4 h-title h1 fw-normal text-center">Registrarse</div>
+            <p>Completa todos los campos.</p>
             {{ form | crispy }}
-            <button class="mt-3 btn-sample btn" type="submit">Registrarse</button>
+            <div class="text-center">
+                <button class="mt-3 btn-sample btn" type="submit">Registrarse</button>
+            </div>
         </div>
     </div>
 </form>
