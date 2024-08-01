@@ -111,7 +111,11 @@
   {% for valoracion in valoraciones %}
   <div class="d-flex align-items-start mt-3">
     <div class="flex-shrink-0">
-      <i class='bx bx-lg bxs-user-circle' style="color: #1c5052"></i>
+      {% if valoracion.usuario.imagen %}
+        <img class="rounded-circle" width="45" height="45" alt="icono_perfil" src="{{valoracion.usuario.imagen.url}}" style="object-fit: cover;"/>
+      {% else %}
+        <img class="rounded-circle" width="45" height="45" alt="icono_perfil" src="{% static 'admin_users/images/icono_perfil.webp' %}" />
+      {% endif %}
     </div>
     <div class="flex-grow-1 ms-3">
       <div class="d-flex align-items-center mb-2">
