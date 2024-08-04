@@ -1,0 +1,80 @@
+{% extends "cabanas/layout.html" %} 
+{% block titulo %}Mis Rentas{% endblock %}
+{% block estadomisRentas %}active{% endblock estadomisRentas %}
+{% block nombreApartado %}Mis Rentas{% endblock nombreApartado %}
+{% block contenido %}
+{% load static %}
+
+<p class="h2 fw-light pb-3">Mis Rentas</p>
+
+<!-- Formulario de búsqueda y filtros -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <input type="text" id="buscarInput" class="form-control" placeholder="Buscar por cabaña...">
+    </div>
+
+</div>
+
+{% if rentas %}
+    <div class="row g-4" id="rentasContainer">
+        {% for renta in rentas %}
+        <a href="{% url 'detalles_renta' renta.id %}" class="col col-md-4 text-decoration-none text-body renta-card" data-cabana="{{ renta.cabana }}" data-fechainicio="{{ renta.fecha_inicio }}" data-fechafin="{{ renta.fecha_fin }}">
+            <div>
+                <div class="card">
+                    <img class="card-img-top" src="{% static 'cabanas/images/logo.png' %}" alt="Imagen de la bicicleta">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ renta.cabana }}</h5>
+                        <p class="card-text">
+                            <b>Fecha de inicio:</b> {{ renta.fecha_inicio }}<br>
+                            <b>Fecha de fin:</b> {{ renta.fecha_fin }}<br>
+                            <b>Costo total:</b> ${{ renta.total }} MXN<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted text-center pt-5">No tienes rentas para mostrar.</p>
+{% endif %}
+
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buscarInput = document.getElementById('buscarInput');
+        const rentasContainer = document.getElementById('rentasContainer');
+
+        function filtrarRentas() {
+            const buscarTermino = buscarInput.value.toLowerCase();
+            const rentas = rentasContainer.querySelectorAll('.renta-card');
+        
+            rentas.forEach(renta => {
+                // Asegúrate de que cada atributo esté definido
+                const cabana = (renta.getAttribute('data-cabana') || '').toLowerCase();
+                const fechainicio = (renta.getAttribute('data-fechainicio') || '').toLowerCase();
+                const fechafin = (renta.getAttribute('data-fechafin') || '').toLowerCase();
+                const total = (renta.getAttribute('data-total') || '').toLowerCase();
+        
+                let mostrar = false;
+        
+                if (cabana.includes(buscarTermino) || fechainicio.includes(buscarTermino) || fechafin.includes(buscarTermino) || total.includes(buscarTermino)) {
+                    mostrar = true;
+                }
+        
+                if (mostrar) {
+                    renta.style.display = '';
+                } else {
+                    renta.style.display = 'none';
+                }
+            });
+        }
+        
+
+        buscarInput.addEventListener('input', filtrarRentas);
+    });
+</script>
+{% endblock extra_js %}
+
+{% endblock contenido %}

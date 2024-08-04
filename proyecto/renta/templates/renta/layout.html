@@ -29,28 +29,47 @@
         $(document).ready(function() {
             var fechasOcupadas = {{ fechas_ocupadas|safe }};
             console.log('Fechas Ocupadas:', fechasOcupadas);
-      
+            
             $('#id_fecha_inicio, #id_fecha_fin').attr('type', 'text');
-      
+
             function disableDates(date) {
                 var today = new Date();
                 today.setHours(0, 0, 0, 0); // Setea la hora a medianoche para comparar solo las fechas
-      
+
                 if (date < today) {
                     return [false]; // Deshabilita fechas pasadas
                 }
-      
+
                 var formattedDate = date.toISOString().split('T')[0];
                 console.log('Fecha Actual:', formattedDate);
                 return [!fechasOcupadas.includes(formattedDate)]; // Deshabilita fechas ocupadas
             }
-      
-            $('#id_fecha_inicio, #id_fecha_fin').datepicker({
+
+            $('#id_fecha_inicio').datepicker({
                 beforeShowDay: disableDates,
-                dateFormat: 'yy-mm-dd'
+                dateFormat: 'yy-mm-dd',
+                onSelect: function(selectedDate) {
+                    var fechaInicio = $(this).datepicker('getDate');
+                    var minDate = new Date(fechaInicio.getTime());
+                    minDate.setDate(minDate.getDate() + 1); // La fecha mínima para fecha_fin es un día después de fecha_inicio
+                    $('#id_fecha_fin').datepicker('option', 'minDate', minDate);
+                }
+            });
+
+            $('#id_fecha_fin').datepicker({
+                beforeShowDay: disableDates,
+                dateFormat: 'yy-mm-dd',
+                onSelect: function(selectedDate) {
+                    var fechaInicio = $('#id_fecha_inicio').datepicker('getDate');
+                    var fechaFin = $(this).datepicker('getDate');
+                    if (fechaFin <= fechaInicio) {
+                        alert("La fecha de fin debe ser mayor a la fecha de inicio.");
+                        $(this).val('');
+                    }
+                }
             });
         });
-      </script>
+    </script>
       
 </head>
 <body>
@@ -74,6 +93,11 @@
                     <li class="nav-item">
                         <a class="nav-link {% block estadoContacto %}{% endblock %}" href="{% url "Contacto" %}">Contáctanos</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% block estadomisRentas %}{% endblock %}" href="{% url "mis_rentas" %}">Mis Rentas</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 <ul class="navbar-nav">
                     {% if request.user.is_authenticated %}
@@ -131,4 +155,5 @@
         </div>
     </footer>
     <!--Pie de Página-->
+    {% block extra_js %}{% endblock %}
 </html>
