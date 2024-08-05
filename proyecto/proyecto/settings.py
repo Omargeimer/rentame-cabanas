@@ -116,7 +116,7 @@ DATABASES = {
     'ENGINE': 'django.db.backends.mysql',
     'NAME': 'bd_rentame',
     'USER': 'avnadmin',
-    'PASSWORD':'AVNS_9c2oxOCgJsfY0wQDipj',
+    'PASSWORD':'',#AVNS_9c2oxOCgJsfY0wQDipj
     'HOST': 'rentame-omargeimer2122-20be.h.aivencloud.com',
     'PORT': '11430',
     }
