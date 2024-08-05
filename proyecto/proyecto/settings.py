@@ -121,16 +121,7 @@ WSGI_APPLICATION = 'proyecto.wsgi.application'
     'PORT': '11430',
     }
 }'''
-DATABASES = {
-    'default': {
-    'ENGINE': 'django.db.backends.mysql',
-    'NAME': '',
-    'USER': '',
-    'PASSWORD':'',
-    'HOST': '',
-    'PORT': '',
-    }
-}
+
 
 
 # Password validation
