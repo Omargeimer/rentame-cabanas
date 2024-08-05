@@ -1,0 +1,29 @@
+{% extends "cabanas/layout.html" %}
+{% block titulo %}Detalles de la Renta{% endblock %}
+{% block nombreApartado %}Detalles de la Renta{% endblock nombreApartado %}
+{% block contenido %}
+<div class="container mt-5 text-center">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-header">
+                  <h5 class="card-title">A continuación los detalles de tu renta</h5>
+              </div>
+              <div class="card-body">
+                    <p><b>Has rentado:</b> {{renta.cabana}}.</p>
+                    <p><b>Código de acceso:</b> RenC{{ renta.id }}.</p>
+                    <p><b>Fecha de inicio:</b> {{ renta.fecha_inicio }}.</p>
+                    <p><b>Fecha de fin:</b> {{ renta.fecha_fin }}.</p>
+                    <p><b>Costo total:</b> {{ renta.total }}.</p>
+                    <p><b>Método de pago:</b> {{ renta.metodo_pago }}.</p>
+                    <p><b>Código QR de acceso:</b></p>
+                    <img src="{{ qr_code_url }}" alt="Código QR de la renta">
+              </div>
+              <div class="card-footer text-right">
+                  <a href="/mis_rentas" class="btn btn-primary btn-sample">Regresar</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}

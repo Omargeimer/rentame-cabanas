@@ -38,6 +38,12 @@
                     <li class="nav-item">
                         <a class="nav-link {% block estadoContacto %}{% endblock %}" href="{% url "Contacto" %}">Contáctanos</a>
                     </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% block estadomisRentas %}{% endblock %}" href="{% url "mis_rentas" %}">Mis Rentas</a>
+                    </li>
+                    {% endif %}
+                
                 </ul>
                 <ul class="navbar-nav">
                     {% if request.user.is_authenticated %}
