@@ -21,7 +21,7 @@
         <a href="{% url 'detalles_renta' renta.id %}" class="col col-md-4 text-decoration-none text-body renta-card" data-cabana="{{ renta.cabana }}" data-fechainicio="{{ renta.fecha_inicio }}" data-fechafin="{{ renta.fecha_fin }}">
             <div>
                 <div class="card">
-                    <img class="card-img-top" src="{% static 'cabanas/images/logo.png' %}" alt="Imagen de la bicicleta">
+                    <img  class="card-img-tamanoImg card-img-top" src="{{ renta.cabana.imagenes.first.ruta.url }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ renta.cabana }}</h5>
                         <p class="card-text">
