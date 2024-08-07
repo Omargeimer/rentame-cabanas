@@ -180,3 +180,7 @@ fieldset[disabled] .btn-enviar-comentario.active {
   color: #1C5052 !important; 
   background-color: #F2F2F2 !important; 
 }
+
+.text-capitalize-first::first-letter {
+  text-transform: capitalize;
+}
