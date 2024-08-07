@@ -73,10 +73,10 @@ def registrarValoracion(request, id):
 def sobre_nosotros(request):
     return render(request, 'cabanas/sobre_nosotros.html')
 
-#Función error_404 para mostrar cuando no existe la página solicitada.
-def error_404(request):
-    return render(request, 'cabanas/error_404.html')
-
 def logout_user(request):
     logout(request)
     return redirect('Catalogo')
+
+#Función error_404 para mostrar cuando no existe la página solicitada.
+def error_404(request, exception):
+    return render(request, 'cabanas/404.html', status=404)
