@@ -2,7 +2,6 @@
 {% block titulo %}Perfil{% endblock %}
 {% load static %}
 {% block contenido %}
-<form action="{% url "Editar_Perfil" %}" method="get" id="form1">
     <div class="text-center">
         <div class="h-title h1 fw-normal pb-1">Perfil</div>
         {% if user.imagen %}
@@ -10,20 +9,17 @@
         {% else %}
             <img class="avatar" width="300" height="300" alt="icono_perfil" src="{% static 'admin_users/images/icono_perfil.webp' %}"/>
         {% endif %}
-        <p class="h2 fw-light pb-3"> {{user.first_name}} {{user.last_name}} </p>
-        <p><strong> Nombre de Usuario:</strong> {{user.username}} </p>
-        <p><strong> Número Teléfonico:</strong> {{user.telefono}} </p>
-        <p><strong> Correo Electrónico:</strong> {{user.email}} </p>
+        <p class="h3 pt-3 font-weight-bold">@{{user.username}}</p>
+        <p class="h5 fw-light pb-3"> {{user.first_name}} {{user.last_name}} </p>
+        <p><i class="fa-solid fa-phone"></i> {{user.telefono}} </p>
+        <p><i class="fa-solid fa-envelope"></i> {{user.email}} </p>
 
         
         
         <button type="button" class="btn-sample btn mb-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">
             Editar Perfil
         </button>
-        
-
     </div>
-</form>
 
 <!-- Vertically centered scrollable modal -->
 <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
@@ -46,16 +42,16 @@
 
                     <div class="mb-3">
                         <label for="image">Foto de Perfil</label>
-                        <input class="form-control" type="file" name="image" id="image">
+                        <input class="form-control" type="file" name="imagen">
                     </div>
 
                     <div class="d-flex">
-                        <div class="mb-3 mr-2">
+                        <div class="mb-3 col-6 mr-2 pe-3">
                             <label for="first_name">Nombre:</label>
                             <input type="text" class="form-control" name="first_name" value="{{user.first_name}}">
                         </div>
 
-                        <div class="mb-3">
+                        <div class="col-6 mb-3">
                             <label for="first_name">Apellidos:</label>
                             <input type="text" class="form-control" name="last_name" value="{{user.last_name}}">
                         </div>
@@ -63,20 +59,20 @@
 
 
                     <div class="d-flex">
-                        <div class="mb-3 mr-2">
+                        <div class="mb-3 col-6 pe-3 mr-2">
                             <label for="username">Nombre de Usuario:</label>
                             <input type="text" class="form-control" name="username" value="{{user.username}}">
                         </div>
 
-                        <div class="mb-3">
+                        <div class="mb-3 col-6">
                             <label for="email">Número Telefónico:</label>
-                            <input type="text" class="form-control" name="email" value="{{user.telefono}}">
+                            <input type="text" class="form-control" name="telefono" value="{{user.telefono}}">
                         </div>
                     </div>
 
                     <div class="d-flex">
 
-                        <div class="mb-12">
+                        <div class="col-12">
                             <label for="email">Correo Electrónico:</label>
                             <input type="text" class="form-control" name="email" value="{{user.email}}" disabled>
                         </div>
