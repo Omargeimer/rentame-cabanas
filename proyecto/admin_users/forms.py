@@ -12,9 +12,4 @@ class CustomUserCreationForm(UserCreationForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model= Usuario
-        fields= ['first_name','last_name', 'email', 'telefono', ]
-
-class ProfileForm(forms.ModelForm):
-    class Meta:
-        model= Usuario
-        fields=['imagen','telefono']
+        fields= ['first_name','last_name', 'email', 'telefono', 'imagen' ]
