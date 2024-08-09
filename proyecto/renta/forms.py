@@ -36,5 +36,10 @@ class RentaForm(forms.ModelForm):
             )
             if overlapping_rentas.exists():
                 raise ValidationError('La cabaña ya está rentada en las fechas seleccionadas.')
+            
+        if fecha_inicio and fecha_fin:
+            if fecha_fin <= fecha_inicio:
+                raise forms.ValidationError("La fecha de fin debe ser mayor a la fecha de inicio.")
+        
         
         return cleaned_data

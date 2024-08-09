@@ -7,10 +7,8 @@ from datetime import datetime, timedelta
 import qrcode
 import base64
 from io import BytesIO
-from django.shortcuts import render
-from .models import Renta
 
-
+@login_required
 def renta_exitosa(request, renta_id):
     renta = Renta.objects.get(id=renta_id)
     codigo_renta = f"RenC{renta.id}"
@@ -96,3 +94,40 @@ def rentar_cabana(request, cabanas_id):
         'fechas_ocupadas': fechas_ocupadas
     })
 
+@login_required
+def mis_rentas(request):
+    rentas = Renta.objects.filter(usuario=request.user)
+    context = {'rentas': rentas}
+    return render(request, 'renta/mis_rentas.html', context)
+
+@login_required
+def detalles_renta(request, renta_id):
+    renta = Renta.objects.get(id=renta_id)
+    codigo_renta = f"RenC{renta.id}"
+
+    # Generar el código QR
+    qr = qrcode.QRCode(
+        version=1,
+        error_correction=qrcode.constants.ERROR_CORRECT_L,
+        box_size=10,
+        border=4,
+    )
+    qr.add_data(codigo_renta)
+    qr.make(fit=True)
+
+    img = qr.make_image(fill_color="black", back_color="white")
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    # Convertir la imagen en base64
+    img_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+    qr_code_url = f"data:image/png;base64,{img_base64}"
+
+    # Pasar la URL del código QR al template
+    context = {
+        'renta': renta,
+        'qr_code_url': qr_code_url,
+    }
+
+    return render(request, 'renta/detalles_renta.html', context)

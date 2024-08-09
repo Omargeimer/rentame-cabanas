@@ -4,7 +4,11 @@
 {% load static %}
 {% block contenido %}
 <div class="text-center">
-  <img class="rounded-circle" width="300" height="300" src="{% static 'admin_users/images/icono_perfil.webp' %}" />
+  {% if user.imagen %}
+    <img class="avatar mb-5" width="300" height="300" alt="icono_perfil" src="{{user.imagen.url}}"/>
+  {% else %}
+    <img class="avatar mb-5" width="300" height="300" alt="icono_perfil" src="{% static 'admin_users/images/icono_perfil.webp' %}"/>
+  {% endif %}
   <form action="#" method="get" class="row gy-2 gx-3 align-items-center d-flex justify-content-center">
     <div class="col col-md-6">
       <div class="input-group">

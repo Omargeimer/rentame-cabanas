@@ -60,6 +60,12 @@ hr{
   border-color: #1C5052; 
 } 
 
+.btn-secondary {
+  color: #000000 !important; 
+  background-color: #818181 !important;
+  border-color: #818181 !important; 
+}
+
 ul.justificar-texto, p.justificar-texto {
   text-align: justify !important;
 }
