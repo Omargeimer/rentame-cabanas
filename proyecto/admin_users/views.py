@@ -14,7 +14,7 @@ def perfil(request, *args, **kwargs):
         user_form = UserForm(request.POST, request.FILES, instance=user)
         if user_form.is_valid():
             user_form.save()
-            return redirect('Catalogo')
+            return redirect('Perfil')
     else:
         user_form = UserForm(instance=user)
 
