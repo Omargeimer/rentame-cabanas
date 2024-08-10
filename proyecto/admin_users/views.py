@@ -42,7 +42,7 @@ def register(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             if user is not None:
                 auth_login(request, user)
-                return redirect('Catalogo')
+                return redirect('Perfil')
     else:
         form = CustomUserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
