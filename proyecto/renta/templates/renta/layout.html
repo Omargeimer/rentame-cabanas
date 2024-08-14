@@ -103,12 +103,16 @@
                     {% if request.user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{% static "cabanas/images/perfil.png" %}">
+                                {% if user.imagen %}
+                                    <img class="rounded-circle" width="32" height="32" alt="icono_perfil" src="{{user.imagen.url}}" style="object-fit: cover;"/>
+                                {% else %}
+                                    <img class="rounded-circle" alt="icono_perfil" src="{% static "cabanas/images/perfil.png" %}" />
+                                {% endif %}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{% url "Perfil" %}">Ver Perfil</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{% url "LogOut" %}">Cerrar Sesión</a></li>
+                                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#CerrarSesionModal" href="#">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     {% else %}
@@ -155,4 +159,22 @@
     </footer>
     <!--Pie de Página-->
     {% block extra_js %}{% endblock %}
+    <!-- Modal -->
+    <div class="modal fade" id="CerrarSesionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="CerrarSesionModalLabel">Cierre de Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de salir? Si es así, selecciona la opción de "Salir", de lo contrario, en "Cancelar".
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <a class="btn-sample btn" href="{% url "LogOut" %}">Salir</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </html>
