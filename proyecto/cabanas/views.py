@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import logout
-from admin_cabanas.models import Cabana
+from admin_cabanas.models import Cabana, ImagenCabana
 from promociones.models import Promocion
 from valoraciones.models import Valoracion
 from valoraciones.forms import ValoracionForm
@@ -27,6 +27,7 @@ def catalogo(request):
 def vista_cabana_usuario(request, id):
     cabana = Cabana.objects.get(id=id)
     usuario = request.user
+    imagenes_cabana = ImagenCabana.objects.filter(cabana=id)
     
     # La siguiente condición verifica si el usuario está autenticado
     #si es así, se verifica que el usuario haya realizado un comentario en la cabaña en cuestión
@@ -47,7 +48,8 @@ def vista_cabana_usuario(request, id):
             'cabanas':cabana, 
             'valoraciones':valoraciones, 
             'aprobacion_comentario':aprobacion_comentario,
-            'verificacion_valoracion':verificacion_valoracion
+            'verificacion_valoracion':verificacion_valoracion,
+            'imagenes_cabana':imagenes_cabana,
         }
     )
 
@@ -71,10 +73,10 @@ def registrarValoracion(request, id):
 def sobre_nosotros(request):
     return render(request, 'cabanas/sobre_nosotros.html')
 
-#Función error_404 para mostrar cuando no existe la página solicitada.
-def error_404(request):
-    return render(request, 'cabanas/error_404.html')
-
 def logout_user(request):
     logout(request)
     return redirect('Catalogo')
+
+#Función error_404 para mostrar cuando no existe la página solicitada.
+def error_404(request, exception):
+    return render(request, 'cabanas/404.html', status=404)

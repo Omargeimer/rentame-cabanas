@@ -1,0 +1,45 @@
+{% extends "cabanas/layout.html" %}
+{% block titulo %}Perfil{% endblock %}
+{% load static %}
+{% block contenido %}
+{% load crispy_forms_tags %}
+
+    <div class="text-center">
+        <div class="h-title h1 fw-normal pb-1">Perfil</div>
+        {% if user.imagen %}
+            <img class="avatar" width="300" height="300" alt="icono_perfil" src="{{user.imagen.url}}"/>
+        {% else %}
+            <img class="avatar" width="300" height="300" alt="icono_perfil" src="{% static 'admin_users/images/icono_perfil.webp' %}"/>
+        {% endif %}
+        <p class="h3 pt-3 font-weight-bold">@{{user.username}}</p>
+        <p class="h5 fw-light pb-3"> {{user.first_name}} {{user.last_name}} </p>
+        <p><i class="fa-solid fa-phone"></i> {{user.telefono}} </p>
+        <p><i class="fa-solid fa-envelope"></i> {{user.email}} </p>
+
+        
+        
+        <button type="button" class="btn-sample btn mb-3" data-bs-toggle="modal" data-bs-target="#editProfileModal">
+            Editar Perfil
+        </button>
+    </div>
+
+<!-- Vertically centered scrollable modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Editar Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {{ user_form | crispy }}
+                </div>
+                <button type="submit">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

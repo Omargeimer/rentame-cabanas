@@ -1,0 +1,77 @@
+{% extends "cabanas/layout.html" %} 
+{% block titulo %}Mis Rentas{% endblock %}
+{% block estadomisRentas %}active{% endblock estadomisRentas %}
+{% block nombreApartado %}Mis Rentas{% endblock nombreApartado %}
+{% block contenido %}
+{% load static %}
+
+<!-- Formulario de búsqueda y filtros -->
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        <input type="text" id="buscarInput" class="form-control" placeholder="Buscar por cabaña...">
+    </div>
+</div>
+
+{% if rentas %}
+    <div  id="rentasContainer">
+        {% for renta in rentas %}
+        <a href="{% url 'detalles_renta' renta.id %}" class="col col-md-4 text-decoration-none text-body renta-card" data-cabana="{{ renta.cabana }}" data-fechainicio="{{ renta.fecha_inicio }}" data-fechafin="{{ renta.fecha_fin }}">
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <img class="img-fluid w-100 h-100" src="{{ renta.cabana.imagenes.first.ruta.url }}">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ renta.cabana }}</h5>
+                            <p class="card-text">Rentaste esta cabaña del {{ renta.fecha_inicio }} al {{ renta.fecha_fin }}.</p>
+                            <p class="card-text"><small class="text-muted">El total fue de ${{ renta.total }} MXN.</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </a>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-muted text-center pt-5">No tienes rentas para mostrar.</p>
+{% endif %}
+
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buscarInput = document.getElementById('buscarInput');
+        const rentasContainer = document.getElementById('rentasContainer');
+
+        function filtrarRentas() {
+            const buscarTermino = buscarInput.value.toLowerCase();
+            const rentas = rentasContainer.querySelectorAll('.renta-card');
+        
+            rentas.forEach(renta => {
+                const cabana = (renta.getAttribute('data-cabana') || '').toLowerCase();
+                const fechainicio = (renta.getAttribute('data-fechainicio') || '').toLowerCase();
+                const fechafin = (renta.getAttribute('data-fechafin') || '').toLowerCase();
+                const total = (renta.getAttribute('data-total') || '').toLowerCase();
+        
+                let mostrar = false;
+        
+                if (cabana.includes(buscarTermino) || fechainicio.includes(buscarTermino) || fechafin.includes(buscarTermino) || total.includes(buscarTermino)) {
+                    mostrar = true;
+                }
+        
+                if (mostrar) {
+                    renta.style.display = '';
+                } else {
+                    renta.style.display = 'none';
+                }
+            });
+        }
+        
+
+        buscarInput.addEventListener('input', filtrarRentas);
+    });
+</script>
+{% endblock extra_js %}
+
+{% endblock contenido %}
