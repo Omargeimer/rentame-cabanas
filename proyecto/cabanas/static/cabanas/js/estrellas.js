@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let selectedValue = 0;
     const numeroEstrellasInput = document.querySelector('input[name="numero_estrellas"]');
     const calif = document.getElementById('calif');
+    const submitButton = document.getElementById('btn-valoracion');
 
     stars.forEach(star => {
         star.addEventListener('mouseover', () => {
@@ -18,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const value = parseInt(star.getAttribute('data-value'));
             if (selectedValue === value) {
                 selectedValue = 0; // Deseleccionar estrella 
+                submitButton.disabled = true;
             } else {
                 selectedValue = value;
             }
@@ -51,6 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     calif.textContent = 'Sin Valoraciones';
                     break;
             }
+
+            if (parseInt(selectedValue) > 0) {
+                submitButton.disabled = false;
+            }
+ 
         });
     });
 
